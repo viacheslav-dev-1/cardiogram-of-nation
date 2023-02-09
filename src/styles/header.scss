@@ -1,0 +1,83 @@
+.header {
+    display: flex;
+    margin-top: 5px;
+    width: 100%;
+    justify-content: center;
+
+    div.zeros-btn {
+        cursor: pointer;
+        opacity: 0.8;
+        transition: .2s;
+        margin-right: auto;
+    }
+
+    div.zeros-btn.active {
+        border: #c9c9c9 2px dashed;
+    }
+
+    div.zeros-btn:hover {
+        transform: scale(1.3);
+        opacity: 1;
+        transition: .2s;
+    }
+
+    .title-container {
+        display: flex;
+        margin-right: auto;
+
+        div.icon {
+            display: flex;
+            width: 62px;
+            height: 58px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100px;
+            margin: 0 10px 0 5%;
+        }
+
+        .icon.icon-none {
+            display: none;
+        }
+
+        div.title {
+            justify-content: center;
+            align-self: center;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+
+            a {
+                text-decoration: none;
+                color: rgb(83, 177, 249);
+            }
+
+            .pipe {
+                display: none;
+            }
+        }
+
+        div.war-day {
+            align-self: center;
+            margin-left: 10px;
+
+            input[type="text"] {
+                background: transparent;
+                font-family: 'e-Ukraine Head';
+                color: #c9c9c9;
+                border: #c9c9c9 2px solid;
+                border-radius: 5px;
+                outline: none;
+                font-weight: bold;
+                width: 30px;
+                padding: 5px;
+                text-align: center;
+            }
+
+            input[type="text"]:focus {
+                border: #53b1f9 2px solid;
+                color: #53b1f9;
+            }
+        }
+    }
+
+}

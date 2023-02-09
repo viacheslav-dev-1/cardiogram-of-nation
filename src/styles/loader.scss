@@ -1,0 +1,14 @@
+#loader {
+    width: 100%;
+    height: calc(100% - 200px);
+    position: fixed;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+
+    svg {
+        width: 100px;
+    }
+}

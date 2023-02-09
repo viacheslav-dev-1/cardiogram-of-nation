@@ -1,0 +1,77 @@
+#chart {
+	height: calc(100vh - 120px);
+	width: 100%;
+}
+
+.chart-canvas {
+	display: flex;
+	flex-direction: column;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	height: 100%;
+}
+
+.svg-circle-text,
+.svg-polygon-text {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	transition: 0.1s;
+}
+
+.svg-circle-text:hover {
+	font-size: 30px;
+	transition: 0.1s;
+}
+
+@keyframes grow {
+	0% {
+		transform: scaley(0)
+	}
+
+	100% {
+		transform: scaley(1)
+	}
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.grow-animation {
+	animation: grow 0.5s forwards;
+}
+
+.appear-animation {
+	animation: appear 1s forwards;
+}
+
+.svg-polygon {
+	animation: grow 0.5s forwards;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
