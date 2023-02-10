@@ -50,7 +50,7 @@ export class ChartDrawings {
         const { offsetWidth, offsetHeight } = this.#canvasContainer
 
         const chartSize = [offsetWidth, offsetHeight * (chartHeight ? chartHeight : Init.isMobile ? 0.5 : 0.4)]
-        const legendSize = [offsetWidth, offsetHeight * (legendHeight ? legendHeight : Init.isMobile ? 0.5 : 0.6)]
+        const legendSize = [offsetWidth, offsetHeight * (legendHeight ? legendHeight : Init.isMobile ? 0.5 : 0.6)] // TODO: for Chrome and Safari on IOS reduce height
         this.#legendHeight = legendSize[1]
 
         this.#chartSvg.style.height = chartSize[1] + 'px'
@@ -191,7 +191,6 @@ export class ChartDrawings {
         legendSvg.classList = 'legend-canvas'
         legendSvg.style.width = this.#legendWidth
         legendSvg.style.height = this.#legendHeight
-        Init.isMobile && (legendSvg.style.marginTop = '-20px')
         this.#legendSvg = legendSvg
 
         this.#canvasContainer.appendChild(legendSvg)
