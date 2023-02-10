@@ -52,7 +52,7 @@ import { Store } from './js/store/Store'
             const dataLs = localStorage.getItem('emotionsData')
             drawings.draw(JSON.parse(dataLs), { darker: 'black', dark: '#3e3e3e', bright: '#c9c9c9', blue: '#53b1f9', yellow: '#fffb00', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
         }
-    }, 80)
+    }, 200)
 
 })();
 
@@ -60,10 +60,14 @@ function loadDesktopStyles() {
     import('./styles/modal.scss').then()
     import('./styles/chart.scss').then()
     import('./styles/header-desktop.scss').then()
+    
+    document.getElementsByClassName('top-action-panel')[0].style.display = 'none'
 }
 
 function loadMobileStyles() {
     import('./styles/modal-mobile.scss').then()
     import('./styles/chart.scss').then()
     import('./styles/header-mobile.scss').then()
+
+    document.getElementsByClassName('bottom-action-panel')[0].style.display = 'none'
 }

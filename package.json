@@ -1,10 +1,13 @@
 {
   "name": "cardiogram-of-nation",
+  "homepage": "https://viacheslav-boiko.github.io/cardiogram-of-nation",
   "version": "1.0.0",
   "description": "",
   "private": true,
   "scripts": {
-    "prod": "npx webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "build": "npx webpack --mode production",
     "dev": "npx webpack --mode development",
     "serve": "npx webpack serve --mode development"
   },
@@ -13,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.7.3",
+    "gh-pages": "^5.0.0",
     "node-sass": "^8.0.0",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",

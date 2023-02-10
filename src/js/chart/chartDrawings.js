@@ -188,8 +188,10 @@ export class ChartDrawings {
     #drawLegendCanvas() {
         const legendSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
         legendSvg.id = 'legend-canvas'
+        legendSvg.classList = 'legend-canvas'
         legendSvg.style.width = this.#legendWidth
         legendSvg.style.height = this.#legendHeight
+        Init.isMobile && (legendSvg.style.marginTop = '-20px')
         this.#legendSvg = legendSvg
 
         this.#canvasContainer.appendChild(legendSvg)

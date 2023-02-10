@@ -20,8 +20,8 @@ body {
 .action-panel {
     height: 30px;
     display: flex;
-    gap: 20px;
-    margin-top: 5px;
+    gap: 5px;
+    margin-top: 10px;
 
     .label {
         display: flex;
@@ -55,17 +55,37 @@ body {
 }
 
 .opt-active {
-    border-top: #c9c9c9 2px dashed;
-    border-left: #c9c9c9 2px dashed;
-    padding-top: 7px;
-    padding-left: 7px;
+    border-radius: 5px;
+    padding: 7px;
     height: 20px;
+    background: #4e4e4e;
 }
 
 .opt-inactive {
-    border-top: transparent 2px dashed;
-    border-left: transparent 2px dashed;
-    padding-top: 7px;
-    padding-left: 7px;
+    border-radius: 5px;
+    padding: 7px;
     height: 20px;
+}
+
+.war-day {
+    align-self: center;
+    margin-left: 10px;
+}
+
+.war-day-input {
+    background: transparent;
+    font-family: 'e-Ukraine Head';
+    color: #c9c9c9;
+    border: #c9c9c9 2px solid;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    width: 30px;
+    padding: 5px;
+    text-align: center;
+}
+
+.war-day-input:focus {
+    border: #53b1f9 2px solid;
+    color: #53b1f9;
 }

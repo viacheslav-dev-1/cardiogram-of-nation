@@ -55,29 +55,6 @@
                 display: none;
             }
         }
-
-        div.war-day {
-            align-self: center;
-            margin-left: 10px;
-
-            input[type="text"] {
-                background: transparent;
-                font-family: 'e-Ukraine Head';
-                color: #c9c9c9;
-                border: #c9c9c9 2px solid;
-                border-radius: 5px;
-                outline: none;
-                font-weight: bold;
-                width: 30px;
-                padding: 5px;
-                text-align: center;
-            }
-
-            input[type="text"]:focus {
-                border: #53b1f9 2px solid;
-                color: #53b1f9;
-            }
-        }
     }
 
 }
