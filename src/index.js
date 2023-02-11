@@ -7,8 +7,7 @@ import { Db } from './js/db';
 import { ChartDrawings } from './js/chart/chartDrawings';
 import { Store } from './js/store/Store'
 
-const imports = Init.isMobile ? loadMobileStyles() : loadDesktopStyles()
-imports.then(start)
+(Init.isMobile ? loadMobileStyles() : loadDesktopStyles()).then(start)
 
 function start() {
     document.getElementById('container').style.display = 'flex'

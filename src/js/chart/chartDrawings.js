@@ -190,10 +190,9 @@ export class ChartDrawings {
         legendSvg.id = 'legend-canvas'
         legendSvg.classList = 'legend-canvas'
         legendSvg.style.width = this.#legendWidth
-        legendSvg.style.height = this.#legendHeight
+        legendSvg.style.height = this.#legendHeight + 'px'
         this.#legendSvg = legendSvg
-
-        this.#canvasContainer.appendChild(legendSvg)
+        this.#canvasContainer.appendChild(this.#legendSvg)
     }
 
     #point(i, j) {
