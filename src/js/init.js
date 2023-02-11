@@ -1,4 +1,6 @@
 import { initializeApp } from 'firebase/app'
+import { ModalComponent } from '../components/modal';
+import { Ocontainer } from '../components/ocontainer';
 import { Store } from './store/Store';
 
 export class Init {
@@ -21,9 +23,9 @@ export class Init {
     }
 
     static get isIOS() {
-          return navigator.userAgent.includes('iPhone') ||
-                 navigator.userAgent.includes('iPad') ||
-                 navigator.userAgent.includes('iPod')
+        return navigator.userAgent.includes('iPhone') ||
+            navigator.userAgent.includes('iPad') ||
+            navigator.userAgent.includes('iPod')
     }
 
     static firebase() {
@@ -45,45 +47,11 @@ export class Init {
 
     static menu() {
         const zerosBtn = document.getElementById('zerosBtn')
-        const closeModalBtn = document.getElementById('closePopupBtn')
-        const modalMask = document.getElementById('modalMask')
-
         zerosBtn.addEventListener('click', () => {
-            modalMask.style.display = 'inherit'
+            ModalComponent.inject()
         })
 
-        closeModalBtn.addEventListener('click', () => {
-            modalMask.style.display = 'none'
-        })
-
-        if (!this.isMobile) {
-            return
-        }
-
-        const def = document.getElementById('coption')
-        def.classList.add('opt-active')
-        def.classList.remove('opt-inactive')
-
-        Store.mut('onOptionClick', 'coption')
-
-        const ocont = document.getElementById('ocontainer')
-        ocont.addEventListener('click', e => {
-            const els = ocont.getElementsByClassName('label')
-            const el = e.target.closest('.label')
-
-            if (!el) {
-                return
-            }
-            for (let i = 0; i < els.length; i++) {
-                els[i].classList.remove('opt-active')
-                els[i].classList.add('opt-inactive')
-            }
-
-            el && el.classList.remove('opt-inactive')
-            el && el.classList.add('opt-active')
-
-            Store.mut('onOptionClick', el.id)
-        })
+        Ocontainer.inject({ isMobile: this.isMobile })
     }
 
     static date(date) {
