@@ -20,6 +20,12 @@ export class Init {
         return this.clientWidth < 800 || this.clientHeight < 900
     }
 
+    static get isIOS() {
+          return navigator.userAgent.includes('iPhone') ||
+                 navigator.userAgent.includes('iPad') ||
+                 navigator.userAgent.includes('iPod')
+    }
+
     static firebase() {
         const firebaseConfig = {
             apiKey: "AIzaSyBmU7Vyg6DsA58iyBni7AxIToGRnsG6CoE",
@@ -77,15 +83,6 @@ export class Init {
             el && el.classList.add('opt-active')
 
             Store.mut('onOptionClick', el.id)
-        })
-    }
-
-    static resize() {
-        Store.mut('onResize', this.clientWidth + ';' + this.clientHeight)
-        window.addEventListener('resize', (e) => {
-            this.clientWidth = document.documentElement.clientWidth
-            this.clientHeight = document.documentElement.clientHeight
-            Store.mut('onResize', this.clientWidth + ';' + this.clientHeight)
         })
     }
 

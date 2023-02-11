@@ -11,14 +11,8 @@ import { Store } from './js/store/Store'
 
 function start() {
     document.getElementById('container').style.display = 'flex'
-    
-    Init.store()
 
-    /* Load styles */
-    if (Init.isMobile)
-        loadMobileStyles()
-    else
-        loadDesktopStyles()
+    Init.store()
 
     /* Init settings */
     const warDay = Init.warDay

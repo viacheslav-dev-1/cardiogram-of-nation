@@ -50,7 +50,7 @@ export class ChartDrawings {
         const { offsetWidth, offsetHeight } = this.#canvasContainer
 
         const chartSize = [offsetWidth, offsetHeight * (chartHeight ? chartHeight : Init.isMobile ? 0.5 : 0.4)]
-        const legendSize = [offsetWidth, offsetHeight * (legendHeight ? legendHeight : Init.isMobile ? 0.5 : 0.6)] // TODO: for Chrome and Safari on IOS reduce height
+        const legendSize = [offsetWidth, offsetHeight * (legendHeight ? legendHeight : (Init.isMobile ? (Init.isIOS ? 0.4 : 0.5) : 0.6))] // TODO: for Chrome and Safari on IOS reduce height
         this.#legendHeight = legendSize[1]
 
         this.#chartSvg.style.height = chartSize[1] + 'px'
@@ -176,7 +176,8 @@ export class ChartDrawings {
                     const cur = grid.get(curKey);
                     const { fill, zero, key } = predefined[current]
 
-                    cur && item[key] !== undefined && new Label().draw(cur[0], 20, this.#legendHeight - 50, {
+                    const paddingTop = Init.isIOS ? 5 : 20
+                    cur && item[key] !== undefined && new Label().draw(cur[0], paddingTop, this.#legendHeight - 50, {
                         fill, textColor: theme.darker,
                         stroke: zero && item[zero] ? theme.zeroStroke : null
                     }, i, item[key], this.#legendSvg)
