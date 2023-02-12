@@ -126,11 +126,12 @@ export class ChartDrawings {
 
             const { line, cLine, sLine, cFeel, sFeel, eFeel } = item
 
-            const curKey = this.#point(i + 1, line)
+            const curKey = this.#point(item.day, line)
             const cur = grid.get(curKey);
 
-            if (data[i + 1]) {
-                const nextKey = this.#point(i + 2, data[i + 1].line)
+            // 151 Temporary stub
+            if (data[i + 1] && i + 2 !== 151) {
+                const nextKey = this.#point(item.day + 1, data[i + 1].line)
                 const next = grid.get(nextKey);
                 next && new Figure('line').draw({ x1: cur[0], y1: cur[1], x2: next[0], y2: next[1], strokeWidth: 2, stroke: theme.bright, class: 'grow-animation' },
                     this.#chartSvg, true)
@@ -172,7 +173,7 @@ export class ChartDrawings {
                     if (!item)
                         continue
 
-                    const curKey = this.#point(i + 1, item.line)
+                    const curKey = this.#point(item.day, item.line)
                     const cur = grid.get(curKey);
                     const { fill, zero, key } = predefined[current]
 
