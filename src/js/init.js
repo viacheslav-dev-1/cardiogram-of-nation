@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app'
+import { AboutComponent } from '../components/about';
 import { ModalComponent } from '../components/modal';
 import { Ocontainer } from '../components/ocontainer';
 import { Store } from './store/store2';
@@ -49,6 +50,11 @@ export class Init {
         const zerosBtn = document.getElementById('zerosBtn')
         zerosBtn.addEventListener('click', () => {
             ModalComponent.inject()
+        })
+
+        const infoBtn = document.getElementById('info')
+        infoBtn.addEventListener('click', () => {
+            AboutComponent.inject()
         })
 
         Ocontainer.inject({ isMobile: this.isMobile })

@@ -45,12 +45,6 @@
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-
-            a {
-                text-decoration: none;
-                color: rgb(83, 177, 249);
-            }
-
             .pipe {
                 display: none;
             }
@@ -58,3 +52,13 @@
     }
 
 }
+
+.subtitle {
+    display: flex;
+    gap: 10px;
+
+    .info {
+        cursor: pointer;
+    }
+}
+
