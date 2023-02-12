@@ -1,5 +1,5 @@
+import { Store } from '../js/store/store2'
 import template from './ocontainer.html'
-import { Store } from '../js/store/Store'
 
 export class Ocontainer {
     static inject(data) {

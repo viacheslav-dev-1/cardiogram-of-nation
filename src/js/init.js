@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { ModalComponent } from '../components/modal';
 import { Ocontainer } from '../components/ocontainer';
-import { Store } from './store/Store';
+import { Store } from './store/store2';
 
 export class Init {
     static clientWidth

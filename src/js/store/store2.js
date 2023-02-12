@@ -1,3 +1,5 @@
+import { Subject } from "./subject"
+
 export class Store {
     static #interval = null
     static #subjects = []
@@ -41,17 +43,5 @@ export class Store {
     static destroy() {
         this.#interval !== undefined && this.#interval !== null && clearInterval(this.#interval)
         this.#subjects = []
-    }
-}
-
-class Subject {
-    name = ''
-    prev = null
-    cur = null
-    funcs = []
-
-    constructor(name, cur) {
-        this.name = name
-        this.cur = cur
     }
 }

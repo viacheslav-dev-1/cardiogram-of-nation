@@ -1,5 +1,5 @@
 import { Init } from "../init"
-import { Store } from "../store/Store"
+import { Store } from "../store/store2"
 import { Arrow } from "./arrow"
 import { Figure } from "./figure"
 import { Label } from "./label"

@@ -1,5 +1,5 @@
 import template from './header.html'
-import { Store } from '../js/store/Store'
+import { Store } from '../js/store/store2'
 
 export class HeaderComponent {
     static inject(data) {
