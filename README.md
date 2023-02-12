@@ -4,7 +4,7 @@
 <br>Веде ютуб канал: https://www.youtube.com/@TarasBilka та ще один.
 <br><i>На графіку є не всі стани, оскільки ворог накидав скарг на минулі ролики, тому Тарас їх прибрав з пабліку. Тому на графіку
 є лише 150 записів та декілька нових, які було викладено на іншому каналі.</i>
-<br>Сайт опубліковано тут: https://viacheslav-boiko.github.io/cardiogram-of-nation
+<br>Сайт опубліковано тут: https://cardiogram-of-nation.vercel.app/
 <br> <b>Тримаймось! Все буде Україна!</b>
 
 ![Screenshot 2023-02-12 at 02 15 50](https://user-images.githubusercontent.com/50410811/218286539-24f853cc-cef7-49de-bc83-dbe83aaac629.png)
