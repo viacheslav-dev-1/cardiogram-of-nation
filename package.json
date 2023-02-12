@@ -5,8 +5,6 @@
   "description": "",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "build": "npx webpack --mode production",
     "dev": "npx webpack --mode development",
     "serve": "npx webpack serve --mode development"
@@ -16,7 +14,6 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.7.3",
-    "gh-pages": "^5.0.0",
     "html-loader": "^4.2.0",
     "node-sass": "^8.0.0",
     "sass-loader": "^13.2.0",
