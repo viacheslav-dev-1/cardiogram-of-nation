@@ -147,7 +147,7 @@ export class ChartDrawings {
                 new Arrow().draw([cur, target], 10, gridCircleR, { fill: theme.yellow, class: 'grow-animation' }, this.#chartSvg)
             }
 
-            cur && circle.use({ x: cur[0], y: cur[1], fill: theme.darker, stroke: theme.bright, class: 'grow-animation', cursor: 'pointer' }, this.#chartSvg)
+            cur && circle.use({ x: cur[0], y: cur[1], fill: theme.darker, stroke: theme.bright, class: 'appear-animation' }, this.#chartSvg)
 
             if (!Init.isMobile) {
                 const ly = this.#legendHeight / 3

@@ -52,7 +52,7 @@ export class Label extends Figure {
             figures.push(newText)
         }
 
-        return new Figure('g').draw({ cursor: 'pointer' }, canvas, true, { figures })
+        return new Figure('g').draw({}, canvas, true, { figures })
     }
 
     #getTextSize(height, padding, text, symbHeight) {
