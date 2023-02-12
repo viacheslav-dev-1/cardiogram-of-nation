@@ -8,3 +8,5 @@
 <br> <b>Тримаймось! Все буде Україна!</b>
 
 ![Screenshot 2023-02-12 at 02 15 50](https://user-images.githubusercontent.com/50410811/218286539-24f853cc-cef7-49de-bc83-dbe83aaac629.png)
+<img width="411" alt="Screenshot 2023-02-12 at 02 33 19" src="https://user-images.githubusercontent.com/50410811/218286929-c82228b8-8a15-44a7-af84-8872004088cf.png">
+
