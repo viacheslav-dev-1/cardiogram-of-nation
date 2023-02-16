@@ -15,9 +15,7 @@ export class Label extends Figure {
 
         const polygon = new Figure('polygon').draw({
             fill: style.stroke ? 'white' : style.fill,
-            class: 'svg-polygon',
             id: 'svg-polygon_' + index,
-            dataTooltip: text,
             opacity: style.stroke ? '1' : '0.7',
             stroke: style.stroke ? style.stroke : null,
             strokeWidth: style.stroke ? 3 : 0
@@ -34,14 +32,35 @@ export class Label extends Figure {
         const figures = [polygon]
         const textColor = style.stroke ? style.stroke : style.textColor
 
-        if (Math.floor(height - padding) <= text.length * symbHeight && splitted.length === 2) {
-            const textSize = this.#getTextSize(height, padding, splitted[0], symbHeight)
-            const newText = this.#getTextForLabel(splitted[0], tx - 10, ty, textColor, textSize, title, index, style.stroke && 'black 0px 0px 3px')
-            const textSize2 = this.#getTextSize(height, padding, splitted[1], symbHeight);
-            const newText2 = this.#getTextForLabel(splitted[1], tx + 10, ty, textColor, textSize2, title, index, style.stroke && 'black 0px 0px 3px')
+        if (Math.floor(height - padding) <= text.length * symbHeight) {
+            const firstGroup = []
+            const lastGroup = []
+            const fN = Math.round(splitted.length / 2)
+            const lN = splitted.length - fN;
+
+            let i = 0;
+            for(i = 0; i < fN; i++) {
+                firstGroup.push(splitted[i])
+            }
+
+            for(; i < lN + fN; i++) {
+                lastGroup.push(splitted[i])
+            }
+            
+            const firstText = firstGroup.join(' ')
+            const lastText = lastGroup.join(' ')
+
+            const textSize = this.#getTextSize(height, padding, firstText, symbHeight)
+            const newText = this.#getTextForLabel(firstText, lastGroup.length > 0 ? tx - 10 : tx, ty, textColor, textSize, title, index, style.stroke && 'black 0px 0px 3px')
             newText.appendFigure(titleEl)
-            newText2.appendFigure(titleEl)
-            figures.push(newText, newText2)
+            figures.push(newText)
+
+            if (lastGroup.length > 0) {
+                const textSize2 = this.#getTextSize(height, padding, lastText, symbHeight);
+                const newText2 = this.#getTextForLabel(lastText, tx + 10, ty, textColor, textSize2, title, index, style.stroke && 'black 0px 0px 3px')
+                newText2.appendFigure(titleEl)
+                figures.push(newText2)
+            }
         } else {
             let textSize = this.#getTextSize(height, padding, text, symbHeight)
             const data = this.#scaleText(textSize, text, height, padding, symbHeight)
@@ -52,7 +71,7 @@ export class Label extends Figure {
             figures.push(newText)
         }
 
-        return new Figure('g').draw({}, canvas, true, { figures })
+        return new Figure('g').draw({class: 'svg-polygon'}, canvas, true, { figures })
     }
 
     #getTextSize(height, padding, text, symbHeight) {
