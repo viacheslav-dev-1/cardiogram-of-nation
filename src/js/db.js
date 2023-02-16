@@ -5,16 +5,17 @@ export class Db {
     
     constructor() {
         this.#db = getFirestore()
-        this.#ref = collection(this.#db, 'events')
+        this.#ref = collection(this.#db, 'events-json') // Temporarily
     }
 
     async get() {
         try
         {
             const snap = await getDocs(this.#ref)
-            const docs = []
+            let docs = []
             snap.docs.forEach(doc => {
-                docs.push({ ...doc.data(), id: doc.id })
+                const data = JSON.parse(doc.data()?.data)
+                docs = data // Temporarily
             })
     
             return docs
