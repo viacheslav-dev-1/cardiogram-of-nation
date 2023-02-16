@@ -1,4 +1,5 @@
 import './styles.scss'
+import './styles/toggle.scss'
 import './styles/header.scss'
 import './styles/loader.scss'
 import './images/favicon.png'

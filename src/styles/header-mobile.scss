@@ -4,4 +4,19 @@
             display: none;
         }
     }
+
+    div.zeros-btn {
+        opacity: 0.8;
+        margin-right: auto;
+        transition: 0s !important;
+    }
+
+    div.zeros-btn:hover {
+        opacity: 1;
+        transform: scale(1) !important;
+    }
+
+    div.zeros-btn:active {
+        transform: scale(0.95) !important;
+    }
 }

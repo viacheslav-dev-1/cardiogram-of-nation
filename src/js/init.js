@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
-import { AboutComponent } from '../components/about';
 import { ModalComponent } from '../components/modal';
 import { Ocontainer } from '../components/ocontainer';
+import { SettingsComponent } from '../components/settings';
 import { Store } from './store/store2';
 
 export class Init {
@@ -20,7 +20,7 @@ export class Init {
             this.clientWidth = document.documentElement.clientWidth
         if (this.clientHeight === undefined)
             this.clientHeight = document.documentElement.clientHeight
-        return this.clientWidth < 800 || this.clientHeight < 900
+        return this.clientWidth < 800 || this.clientHeight < 800
     }
 
     static get isIOS() {
@@ -54,7 +54,7 @@ export class Init {
 
         const infoBtn = document.getElementById('info')
         infoBtn.addEventListener('click', () => {
-            AboutComponent.inject()
+            SettingsComponent.inject({ isMobile: this.isMobile })
         })
 
         Ocontainer.inject({ isMobile: this.isMobile })
