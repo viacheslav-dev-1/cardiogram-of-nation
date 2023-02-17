@@ -75,16 +75,10 @@
 
             .menu-item {
                 padding: 15px;
-                cursor: pointer;
                 font-size: 14px;
                 border-top: #545454 1px solid;
                 display: flex;
                 gap: 10px;
-            }
-
-            .menu-item:active {
-                background: #545454;
-                scale: 0.99;
             }
 
             .content {

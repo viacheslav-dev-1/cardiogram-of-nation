@@ -81,7 +81,6 @@
 
             .menu-item {
                 padding: 15px;
-                cursor: pointer;
                 font-size: 14px;
                 border-top: #545454 1px solid;
                 display: flex;
@@ -90,10 +89,6 @@
 
             .last {
                 border-bottom: #545454 1px solid;
-            }
-
-            .menu-item:hover {
-                background: #545454;
             }
 
             .content {
