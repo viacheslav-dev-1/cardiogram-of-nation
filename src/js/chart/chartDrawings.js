@@ -150,12 +150,57 @@ export class ChartDrawings {
             cur && circle.use({ x: cur[0], y: cur[1], fill: theme.darker, stroke: theme.bright, class: 'appear-animation' }, this.#chartSvg)
 
             if (!Init.isMobile) {
+                const ls = localStorage.getItem('asTaras') == 1 ? true : false
                 const ly = this.#legendHeight / 3
-                cur && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: item.cZero ? theme.zeroStroke : null }, i, cFeel, this.#legendSvg)
-                cur && sFeel !== undefined && new Label().draw(cur[0], ly - 10, ly, { fill: theme.blue, textColor: theme.darker, stroke: item.sZero ? theme.zeroStroke : null }, i + data.length, sFeel, this.#legendSvg)
-                cur && eFeel !== undefined && new Label().draw(cur[0], 2 * (ly - 10), ly, { fill: theme.red, textColor: theme.darker }, i + data.length * 2, eFeel, this.#legendSvg)
+
+                if (ls) {
+                    cur && i % 2 == 0 && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i, cFeel, this.#legendSvg)
+                    cur && i % 2 != 0 && sFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i, sFeel, this.#legendSvg)
+                    cur && i % 2 == 0 && sFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i + data.length, sFeel, this.#legendSvg)
+                    cur && i % 2 != 0 && cFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i + data.length, cFeel, this.#legendSvg)
+                    cur && eFeel !== undefined && new Label().draw(cur[0], 2 * (ly - 5), ly, { fill: theme.red, textColor: theme.darker }, i + data.length * 2, eFeel, this.#legendSvg)
+                } else {
+                    cur && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: item.cZero ? theme.zeroStroke : null }, i, cFeel, this.#legendSvg)
+                    cur && sFeel !== undefined && new Label().draw(cur[0], ly - 10, ly, { fill: theme.blue, textColor: theme.darker, stroke: item.sZero ? theme.zeroStroke : null }, i + data.length, sFeel, this.#legendSvg)
+                    cur && eFeel !== undefined && new Label().draw(cur[0], 2 * (ly - 10), ly, { fill: theme.red, textColor: theme.darker }, i + data.length * 2, eFeel, this.#legendSvg)
+                }
             }
         }
+
+        if (!Init.isMobile) {
+            Store.sub('asTaras', (prev, next) => {
+                this.#legendSvg.remove()
+                this.#drawLegendCanvas()
+
+                for (let i = 0; i < this.#columns; i++) {
+                    const item = data[i]
+                    if (!item)
+                        continue
+
+
+                    const { line, cLine, sLine, cFeel, sFeel, eFeel } = item
+
+                    const curKey = this.#point(item.day, line)
+                    const cur = grid.get(curKey);
+
+                    if (!next) {
+                        const ly = this.#legendHeight / 3
+                        cur && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: item.cZero ? theme.zeroStroke : null }, i, cFeel, this.#legendSvg)
+                        cur && sFeel !== undefined && new Label().draw(cur[0], ly - 10, ly, { fill: theme.blue, textColor: theme.darker, stroke: item.sZero ? theme.zeroStroke : null }, i + data.length, sFeel, this.#legendSvg)
+                        cur && eFeel !== undefined && new Label().draw(cur[0], 2 * (ly - 10), ly, { fill: theme.red, textColor: theme.darker }, i + data.length * 2, eFeel, this.#legendSvg)
+                    } else {
+                        const ly = this.#legendHeight / 3
+                        cur && i % 2 == 0 && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i, cFeel, this.#legendSvg)
+                        cur && i % 2 != 0 && sFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i, sFeel, this.#legendSvg)
+                        cur && i % 2 == 0 && sFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i + data.length, sFeel, this.#legendSvg)
+                        cur && i % 2 != 0 && cFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i + data.length, cFeel, this.#legendSvg)
+                        cur && eFeel !== undefined && new Label().draw(cur[0], 2 * (ly - 5), ly, { fill: theme.red, textColor: theme.darker }, i + data.length * 2, eFeel, this.#legendSvg)
+                    }
+
+                }
+            })
+        }
+
 
         if (Init.isMobile) {
             const predefined = {
