@@ -154,10 +154,10 @@ export class ChartDrawings {
                 const ly = this.#legendHeight / 3
 
                 if (ls) {
-                    cur && i % 2 == 0 && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i, cFeel, this.#legendSvg)
-                    cur && i % 2 != 0 && sFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i, sFeel, this.#legendSvg)
-                    cur && i % 2 == 0 && sFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i + data.length, sFeel, this.#legendSvg)
-                    cur && i % 2 != 0 && cFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i + data.length, cFeel, this.#legendSvg)
+                    cur && i % 2 == 0 && sFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i, sFeel, this.#legendSvg)
+                    cur && i % 2 != 0 && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i, cFeel, this.#legendSvg)
+                    cur && i % 2 == 0 && cFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i + data.length, cFeel, this.#legendSvg)
+                    cur && i % 2 != 0 && sFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i + data.length, sFeel, this.#legendSvg)
                     cur && eFeel !== undefined && new Label().draw(cur[0], 2 * (ly - 5), ly, { fill: theme.red, textColor: theme.darker }, i + data.length * 2, eFeel, this.#legendSvg)
                 } else {
                     cur && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: item.cZero ? theme.zeroStroke : null }, i, cFeel, this.#legendSvg)
@@ -190,13 +190,12 @@ export class ChartDrawings {
                         cur && eFeel !== undefined && new Label().draw(cur[0], 2 * (ly - 10), ly, { fill: theme.red, textColor: theme.darker }, i + data.length * 2, eFeel, this.#legendSvg)
                     } else {
                         const ly = this.#legendHeight / 3
-                        cur && i % 2 == 0 && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i, cFeel, this.#legendSvg)
-                        cur && i % 2 != 0 && sFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i, sFeel, this.#legendSvg)
-                        cur && i % 2 == 0 && sFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i + data.length, sFeel, this.#legendSvg)
-                        cur && i % 2 != 0 && cFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i + data.length, cFeel, this.#legendSvg)
+                        cur && i % 2 == 0 && sFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i, sFeel, this.#legendSvg)
+                        cur && i % 2 != 0 && cFeel !== undefined && new Label().draw(cur[0], 0, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i, cFeel, this.#legendSvg)
+                        cur && i % 2 == 0 && cFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.yellow, textColor: theme.darker, stroke: null }, i + data.length, cFeel, this.#legendSvg)
+                        cur && i % 2 != 0 && sFeel !== undefined && new Label().draw(cur[0], ly - 20, ly, { fill: theme.blue, textColor: theme.darker, stroke: null }, i + data.length, sFeel, this.#legendSvg)
                         cur && eFeel !== undefined && new Label().draw(cur[0], 2 * (ly - 5), ly, { fill: theme.red, textColor: theme.darker }, i + data.length * 2, eFeel, this.#legendSvg)
                     }
-
                 }
             })
         }
