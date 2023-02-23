@@ -36,9 +36,11 @@ function start() {
             localStorage.setItem('emotionsData', JSON.stringify(sorted))
         })
     } else {
-        LoaderComponent.eject()
-        const dataLs = localStorage.getItem('emotionsData')
-        drawings.draw(JSON.parse(dataLs), { darker: 'black', dark: '#3e3e3e', bright: '#c9c9c9', blue: '#53b1f9', yellow: '#fffb00', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
+        setTimeout(() => {
+            LoaderComponent.eject()
+            const dataLs = localStorage.getItem('emotionsData')
+            drawings.draw(JSON.parse(dataLs), { darker: 'black', dark: '#3e3e3e', bright: '#c9c9c9', blue: '#53b1f9', yellow: '#fffb00', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
+        }, 500)
     }
 }
 

@@ -80,17 +80,26 @@ export class ChartDrawings {
             let fill = theme.dark
             let textColor = theme.bright
 
-            if (highlightLastColumn && i === this.#columns - 1) {
-                fill = textColor = theme.blue;
+            if ((i + 1) % 365 === 0) {
+                new Figure('text').draw({
+                    x: nX, y: headerCirclePadding + circleLineGap + 5, fill: theme.yellow, outline: 'none',
+                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer'
+                }, this.#chartSvg, true, { text: ((i + 1) / 365) + ' РІК' })
+
+                new Figure('line').draw({ x1: nX, y1: vgap, x2: nX, y2: chartHeight - dotGap, strokeWidth: 3, stroke: theme.yellow, class: 'appear-animation' }, this.#chartSvg, true)
+            } else {
+                if (highlightLastColumn && i === this.#columns - 1) {
+                    fill = textColor = theme.blue;
+                }
+
+                new Figure('text').draw({
+                    x: nX, y: headerCirclePadding + circleLineGap + 5, fill: textColor, outline: 'none',
+                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer'
+                }, this.#chartSvg, true, { text: (i + 1) + '' })
             }
 
-            new Figure('text').draw({
-                x: nX, y: headerCirclePadding + circleLineGap + 5, fill: textColor, outline: 'none',
-                textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer'
-            }, this.#chartSvg, true, { text: (i + 1) + '' })
-
             for (let j = 0, y = vgap; j < this.#rows; j++, y += dotGap) {
-                gridCircle.use({ x: nX, y: y + circleLineGap, fill }, this.#chartSvg)
+                (i + 1) % 365 === 0 || gridCircle.use({ x: nX, y: y + circleLineGap, fill, class: 'appear-animation' }, this.#chartSvg)
                 points.set(this.#point(i + 1, j + 1), [nX, y + circleLineGap])
             }
 
