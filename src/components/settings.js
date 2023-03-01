@@ -1,6 +1,7 @@
 import template from './settings.html'
 import howWorks from './howWorks.html'
 import about from './about2.html'
+import updates from './updates.html'
 import { Store } from '../js/store/store2'
 
 export class SettingsComponent {
@@ -18,6 +19,7 @@ export class SettingsComponent {
         
         document.getElementById('howWorksContent').innerHTML = howWorks
         document.getElementById('aboutContent').innerHTML = about
+        document.getElementById('updatesContent').innerHTML = updates
 
         if (data && !data.isMobile) {
             const toggle = document.getElementById('asTarasToggle')

@@ -20,10 +20,7 @@ export class Label extends Figure {
             stroke: style.stroke ? style.stroke : null,
             strokeWidth: style.stroke ? 3 : 0
         }, canvas, false, { points })
-
-        const titleEl = new Figure('title').draw({}, canvas, false, { text: text + (style.stroke ? ' - Zero Point' : '') })
-        polygon.appendFigure(titleEl)
-
+        
         const symbHeight = 12
         const tx = x - 1.5
         const ty = y + height / 2
@@ -39,7 +36,7 @@ export class Label extends Figure {
             const lN = splitted.length - fN;
 
             let i = 0;
-            for(i = 0; i < fN; i++) {
+            for(; i < fN; i++) {
                 firstGroup.push(splitted[i])
             }
 
@@ -51,14 +48,12 @@ export class Label extends Figure {
             const lastText = lastGroup.join(' ')
 
             const textSize = this.#getTextSize(height, padding, firstText, symbHeight)
-            const newText = this.#getTextForLabel(firstText, lastGroup.length > 0 ? tx - 10 : tx, ty, textColor, textSize, title, index, style.stroke && 'black 0px 0px 3px')
-            newText.appendFigure(titleEl)
+            const newText = this.#getTextForLabel(firstText, lastGroup.length > 0 ? tx - 10 : tx, ty, textColor, textSize, index)
             figures.push(newText)
 
             if (lastGroup.length > 0) {
                 const textSize2 = this.#getTextSize(height, padding, lastText, symbHeight);
-                const newText2 = this.#getTextForLabel(lastText, tx + 10, ty, textColor, textSize2, title, index, style.stroke && 'black 0px 0px 3px')
-                newText2.appendFigure(titleEl)
+                const newText2 = this.#getTextForLabel(lastText, tx + 10, ty, textColor, textSize2, index + '_2')
                 figures.push(newText2)
             }
         } else {
@@ -66,8 +61,13 @@ export class Label extends Figure {
             const data = this.#scaleText(textSize, text, height, padding, symbHeight)
             text = data.text
             textSize = data.textSize
-            const newText = this.#getTextForLabel(text, tx, ty, textColor, textSize, title, index)
-            newText.appendFigure(titleEl)
+            const newText = this.#getTextForLabel(text, tx, ty, textColor, textSize, index)
+
+            if (!data.fit) {
+                newText.appendFigure(new Figure('title').draw({}, canvas, false, { text: title + (style.stroke ? ' - Zero Point' : '') }))
+                polygon.appendFigure(new Figure('title').draw({}, canvas, false, { text: title + (style.stroke ? ' - Zero Point' : '') }))
+            }
+            
             figures.push(newText)
         }
 
@@ -80,6 +80,7 @@ export class Label extends Figure {
     }
 
     #scaleText(textSize, text, height, padding, symbHeight) {
+        let fit = true;
         if (textSize < 0.5) {
             let newText = text;
 
@@ -89,15 +90,16 @@ export class Label extends Figure {
 
             text = newText + '...';
             textSize = 0.5;
+            fit = false;
         }
 
-        return { textSize, text }
+        return { textSize, text, fit }
     }
 
-    #getTextForLabel(text, tx, ty, textColor, textSize, title, index) {
+    #getTextForLabel(text, tx, ty, textColor, textSize, pref) {
         const newText = new Figure('text').draw({
             x: tx + 1, y: ty + 2, fill: textColor, textAnchor: 'middle', alignmentBaseline: 'middle',
-            transform: `rotate(270, ${tx}, ${ty})`, outline: 'none', fontSize: textSize + 'em', id: 'svg-polygon-text_' + index, dataTooltip: title
+            transform: `rotate(270, ${tx}, ${ty})`, outline: 'none', fontSize: textSize + 'em', id: 'svg-polygon-text_' + pref
         },
             {}, false, { text })
         return newText;
