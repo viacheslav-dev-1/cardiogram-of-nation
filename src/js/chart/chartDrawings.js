@@ -133,7 +133,7 @@ export class ChartDrawings {
             if (!item)
                 continue
 
-            const { line, cLine, sLine, cFeel, sFeel, eFeel } = item
+            const { line, cLine, sLine } = item
 
             const curKey = this.#point(item.day, line)
             const cur = grid.get(curKey);
@@ -147,13 +147,13 @@ export class ChartDrawings {
             }
 
             if (cLine !== undefined && cLine !== line) {
-                const target = grid.get((i + 1) + ';' + cLine)
-                new Arrow().draw([cur, target], 10, gridCircleR, { fill: theme.blue, class: 'grow-animation' }, this.#chartSvg)
+                const target = grid.get(item.day + ';' + cLine)
+                new Arrow().draw([cur, target], 10, gridCircleR, { fill: theme.yellow, class: 'grow-animation' }, this.#chartSvg)
             }
 
             if (sLine !== undefined && sLine !== line) {
-                const target = grid.get((i + 1) + ';' + sLine)
-                new Arrow().draw([cur, target], 10, gridCircleR, { fill: theme.yellow, class: 'grow-animation' }, this.#chartSvg)
+                const target = grid.get(item.day + ';' + sLine)
+                new Arrow().draw([cur, target], 10, gridCircleR, { fill: theme.blue, class: 'grow-animation' }, this.#chartSvg)
             }
 
             cur && circle.use({ x: cur[0], y: cur[1], fill: theme.darker, stroke: theme.bright, class: 'appear-animation' }, this.#chartSvg)
