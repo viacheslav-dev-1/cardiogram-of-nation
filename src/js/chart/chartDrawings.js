@@ -41,12 +41,13 @@ export class ChartDrawings {
         canvasContainer.appendChild(chartSvg)
         canvasContainer.appendChild(this.#legendSvg)
         this.#chartContainer.appendChild(canvasContainer)
+        this.#canvasEvents();
 
         this.#columns = columns !== undefined ? columns : 0
         this.#rows = rows !== undefined ? rows : 0
     }
 
-    draw(data, theme, chartHeight, legendHeight, options) {
+    draw(theme, chartHeight, legendHeight, options) {
         const { offsetWidth, offsetHeight } = this.#canvasContainer
 
         const chartSize = [offsetWidth, offsetHeight * (chartHeight ? chartHeight : Init.isMobile ? 0.5 : 0.4)]
@@ -57,6 +58,7 @@ export class ChartDrawings {
         this.#legendSvg.style.height = legendSize[1] + 'px'
 
         const grid = this.#drawGrid(chartSize[1], theme, options)
+        const data = Store.get('eventData').cur
         this.#drawChart(data, grid, theme, options)
     }
 
@@ -83,7 +85,7 @@ export class ChartDrawings {
             if ((i + 1) % 365 === 0) {
                 new Figure('text').draw({
                     x: nX, y: headerCirclePadding + circleLineGap + 5, fill: theme.yellow, outline: 'none',
-                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer'
+                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer', id: 'svg-day-' + (i+1)
                 }, this.#chartSvg, true, { text: ((i + 1) / 365) + ' РІК' })
 
                 new Figure('line').draw({ x1: nX, y1: vgap, x2: nX, y2: chartHeight - dotGap, strokeWidth: 3, stroke: theme.yellow, class: 'appear-animation' }, this.#chartSvg, true)
@@ -94,7 +96,7 @@ export class ChartDrawings {
 
                 new Figure('text').draw({
                     x: nX, y: headerCirclePadding + circleLineGap + 5, fill: textColor, outline: 'none',
-                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer'
+                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer', id: 'svg-day-' + (i+1)
                 }, this.#chartSvg, true, { text: (i + 1) + '' })
             }
 
@@ -138,8 +140,7 @@ export class ChartDrawings {
             const curKey = this.#point(item.day, line)
             const cur = grid.get(curKey);
 
-            // 151 Temporary stub
-            if (data[i + 1] && i + 2 !== 151) {
+            if (data[i + 1] && cur) {
                 const nextKey = this.#point(item.day + 1, data[i + 1].line)
                 const next = grid.get(nextKey);
                 next && new Figure('line').draw({ x1: cur[0], y1: cur[1], x2: next[0], y2: next[1], strokeWidth: 2, stroke: theme.bright, class: 'grow-animation' },
@@ -212,6 +213,21 @@ export class ChartDrawings {
                 }
             })
         }
+    }
+
+    #canvasEvents() {
+        this.#chartSvg.addEventListener('click', e => {
+            const id = e.target?.id
+            if (id && id.includes('svg-day')) {
+                const dayStr = id.split('-')[2]
+                if (!dayStr) {
+                    return;
+                }
+
+                const day = parseInt(dayStr)
+                
+            }
+        })
     }
 
     #drawLabels(asTaras, cur, i, item, theme, length) {
