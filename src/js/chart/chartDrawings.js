@@ -141,9 +141,28 @@ export class ChartDrawings {
             const cur = grid.get(curKey);
 
             if (data[i + 1] && cur) {
-                const nextKey = this.#point(item.day + 1, data[i + 1].line)
-                const next = grid.get(nextKey);
-                next && new Figure('line').draw({ x1: cur[0], y1: cur[1], x2: next[0], y2: next[1], strokeWidth: 2, stroke: theme.bright, class: 'grow-animation' },
+
+                let next
+                let dashed = false
+
+                if (!data[i + 1].line) {
+                    let nextDay = 0;
+                    let nextLine = 0;
+                    for (let k = 1;;k++) {
+                        const d = data[i + k + 1]
+                        if (!!d.line) {
+                            nextDay = d.day
+                            nextLine = d.line
+                            break;
+                        }
+                    }
+                    next = grid.get(this.#point(nextDay, nextLine))
+                    dashed = true
+                } else {
+                    next = grid.get(this.#point(item.day + 1, data[i + 1].line))
+                }
+
+                next && new Figure('line').draw({ x1: cur[0], y1: cur[1], x2: next[0], y2: next[1], strokeWidth: 2, stroke: theme.bright, class: 'grow-animation', strokeDasharray: dashed ? '4' : 'none' },
                     this.#chartSvg, true)
             }
 
