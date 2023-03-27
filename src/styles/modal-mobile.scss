@@ -17,7 +17,20 @@
             text-align: center;
          }
 
+         .details-title {
+            padding: 10px;
+            div a {
+                color: #53b1f9;
+            }
+        }
+
         .modal-header {
+            .warning-panel.none-warning {
+                background: transparent;
+                .close-btn svg g {
+                    fill: #c9c9c9
+                }
+            }
             .warning-panel {
                 background: yellow;
                 padding: 5px;
@@ -45,6 +58,21 @@
             flex-direction: column;
             height: calc(100% - 100px);
             align-items: center;
+
+            .video {
+                display: flex;
+                justify-content: center;
+                height: 300px;
+                padding: 10px;
+
+                video {
+                    width: 100%;
+                    height: 300px;
+                    border: #545454 2px solid;
+                    border-radius: 5px;
+                    box-shadow: black;
+                }
+            }
 
             .zeros-list {
                 margin-top: 5px;

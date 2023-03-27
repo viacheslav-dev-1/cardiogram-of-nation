@@ -1,3 +1,4 @@
+import { DetailsComponent } from "../../components/details"
 import { Init } from "../init"
 import { Store } from "../store/store2"
 import { Arrow } from "./arrow"
@@ -244,7 +245,7 @@ export class ChartDrawings {
                 }
 
                 const day = parseInt(dayStr)
-                
+                DetailsComponent.inject(day)
             }
         })
     }
