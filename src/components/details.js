@@ -14,9 +14,10 @@ export class DetailsComponent {
 
         const detailsDay = document.getElementById('detailsDay')
         const result = new Date('02/24/2022')
-        result.setDate(result.getDate() + data - 1)
-        const dayV = result.getUTCDate()
-        let monthV = result.getUTCMonth()
+        result.setDate(result.getDate() + data)
+        let dayV = result.getUTCDate()
+        dayV = dayV < 10 ? '0' + dayV : dayV
+        let monthV = result.getUTCMonth() + 1
         monthV = monthV < 10 ? '0' + monthV : monthV
         const yearV = result.getUTCFullYear();
         detailsDay.innerHTML = `<a>${data} день війни</a><br/><small>${dayV}.${monthV}.${yearV}</small>`
