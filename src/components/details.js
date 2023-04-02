@@ -31,8 +31,9 @@ export class DetailsComponent {
         document.getElementById('sZero').style.display = dayData?.sZero === true ? '' : 'none'
 
         const day = data < 10 ? '0'+data : data
+        const ia = data > 400 ? '' : '.ia'
         document.getElementById('video')
             .getElementsByTagName('source')[0]
-            .src = `https://ia601605.us.archive.org/12/items/taras_bilka_bilchenia-cardiogram_of_ukraine_nation/${day}_taras_bilka-chronicles_of_ua_war-day_${data}.ia.mp4`
+            .src = `https://ia601605.us.archive.org/12/items/taras_bilka_bilchenia-cardiogram_of_ukraine_nation/${day}_taras_bilka-chronicles_of_ua_war-day_${data}${ia}.mp4`
     }
 }
