@@ -35,7 +35,5 @@ export class DetailsComponent {
         document.getElementById('video')
             .getElementsByTagName('source')[0]
             .src = `https://ia601605.us.archive.org/12/items/taras_bilka_bilchenia-cardiogram_of_ukraine_nation/${day}_taras_bilka-chronicles_of_ua_war-day_${data}${ia}.mp4`
-
-        detailsDay.innerHTML = `<a style='font-size:10px'>https://ia601605.us.archive.org/12/items/taras_bilka_bilchenia-cardiogram_of_ukraine_nation/${day}_taras_bilka-chronicles_of_ua_war-day_${data}${ia}.mp4</a>`
     }
 }
