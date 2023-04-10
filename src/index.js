@@ -9,13 +9,28 @@ import { ChartDrawings } from './js/chart/chartDrawings';
 import { HeaderComponent } from './components/header'
 import { LoaderComponent } from './components/loader'
 import { Store } from './js/store/store2'
+import { Container } from './components/container'
 
 (Init.isMobile ? loadMobileStyles() : loadDesktopStyles()).then(start)
 
-function start() {
-    document.getElementById('container').style.display = 'flex'
+window.addEventListener('resize', () => {
+    const prevMob = Store.get('prevMob')?.cur
+    const prevHor = Store.get('prevHor')?.cur
+    const { innerWidth, innerHeight } = window
 
+    if ((prevMob === 'm' && !(innerWidth < 800 && innerHeight < 800)) ||
+        (prevMob === 'd' && innerWidth < 800 && innerHeight < 800) ||
+        (prevHor === 'v' && innerHeight < 600 || (prevHor === 'h' && !(innerHeight < 600 )))) {
+        location.reload()
+    }
+})
+
+function start() {
+    Container.inject(Init.isMobile).style.display = 'flex'
     Init.store()
+
+    Store.mut('prevMob', window.innerWidth < 800 && window.innerHeight < 800 ? 'm' : 'd')
+    Store.mut('prevHor', window.innerHeight < 600 ? 'h' : 'v')
 
     const warDay = Init.warDay
     HeaderComponent.inject({ warDay })
@@ -48,18 +63,14 @@ function start() {
     }
 }
 
-function loadDesktopStyles() {
-    document.getElementsByClassName('top-action-panel')[0].style.display = 'none'
-
-    return import('./styles/modal.scss')
-        .then(() => import('./styles/chart.scss')
-            .then(() => import('./styles/header-desktop.scss')))
+async function loadDesktopStyles() {
+    await import('./styles/modal.scss')
+    await import('./styles/chart.scss')
+    return await import('./styles/header-desktop.scss')
 }
 
-function loadMobileStyles() {
-    document.getElementsByClassName('bottom-action-panel')[0].style.display = 'none'
-
-    return import('./styles/modal-mobile.scss')
-        .then(() => import('./styles/chart.scss')
-            .then(() => import('./styles/header-mobile.scss')))
+async function loadMobileStyles() {
+    await import('./styles/modal-mobile.scss')
+    await import('./styles/chart.scss')
+    return await import('./styles/header-mobile.scss')
 }

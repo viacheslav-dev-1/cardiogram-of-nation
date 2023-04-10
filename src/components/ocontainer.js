@@ -3,6 +3,12 @@ import template from './ocontainer.html'
 
 export class Ocontainer {
     static inject(data) {
+        if (data.isHorizontal) {
+            document.getElementById('ocontainerTop').style.display = 'none'
+            document.getElementById('ocontainerBottom').style.display = 'none'
+            return
+        }
+
         const isMobile = data.isMobile
         if (isMobile) {
             

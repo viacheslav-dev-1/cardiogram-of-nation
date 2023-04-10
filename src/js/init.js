@@ -23,6 +23,10 @@ export class Init {
         return this.clientWidth < 800 || this.clientHeight < 800
     }
 
+    static get isHorizontal() {
+        return this.clientHeight < 600
+    }
+
     static get isIOS() {
         return navigator.userAgent.includes('iPhone') ||
             navigator.userAgent.includes('iPad') ||
@@ -57,7 +61,7 @@ export class Init {
             SettingsComponent.inject({ isMobile: this.isMobile })
         })
 
-        Ocontainer.inject({ isMobile: this.isMobile })
+        Ocontainer.inject({ isMobile: this.isMobile, isHorizontal: this.isHorizontal })
     }
 
     static date(date) {

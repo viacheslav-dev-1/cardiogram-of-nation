@@ -23,7 +23,7 @@ export class ChartDrawings {
             console.error('There is not container specified for chart. Please provide a valid one')
             return
         }
-
+        
         const canvasContainer = document.createElement('div')
         canvasContainer.style.display = 'flex'
         canvasContainer.style.flexDirection = 'column'
@@ -32,7 +32,7 @@ export class ChartDrawings {
         canvasContainer.style.height = '100%'
         canvasContainer.className = 'canvas-container'
         this.#canvasContainer = canvasContainer
-
+        
         const chartSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
         chartSvg.id = 'chart-canvas'
         this.#chartSvg = chartSvg
@@ -40,7 +40,7 @@ export class ChartDrawings {
         this.#drawLegendCanvas()
 
         canvasContainer.appendChild(chartSvg)
-        canvasContainer.appendChild(this.#legendSvg)
+        this.#legendSvg && canvasContainer.appendChild(this.#legendSvg)
         this.#chartContainer.appendChild(canvasContainer)
         this.#canvasEvents();
 
@@ -51,12 +51,14 @@ export class ChartDrawings {
     draw(theme, chartHeight, legendHeight, options) {
         const { offsetWidth, offsetHeight } = this.#canvasContainer
 
-        const chartSize = [offsetWidth, offsetHeight * (chartHeight ? chartHeight : Init.isMobile ? 0.5 : 0.4)]
+        const chartSize = Init.isHorizontal 
+            ? [offsetWidth, offsetHeight] 
+            : [offsetWidth, offsetHeight * (chartHeight ? chartHeight : Init.isMobile ? 0.5 : 0.4)]
         const legendSize = [offsetWidth, offsetHeight * (legendHeight ? legendHeight : (Init.isMobile ? (Init.isIOS ? 0.4 : 0.5) : 0.6))] // TODO: for Chrome and Safari on IOS reduce height
         this.#legendHeight = legendSize[1]
 
         this.#chartSvg.style.height = chartSize[1] + 'px'
-        this.#legendSvg.style.height = legendSize[1] + 'px'
+        this.#legendSvg && (this.#legendSvg.style.height = legendSize[1] + 'px')
 
         const grid = this.#drawGrid(chartSize[1], theme, options)
         const data = Store.get('eventData').cur
@@ -110,8 +112,8 @@ export class ChartDrawings {
 
             i === this.#columns - 1 && (endX = dX)
         }
-
-        this.#chartSvg.style.width = this.#legendSvg.style.width = this.#legendWidth = endX + left + 'px'
+        this.#chartSvg.style.width = this.#legendWidth = endX + left + 'px'
+        this.#legendSvg && (this.#legendSvg.style.width = endX + left + 'px')
         scrollToEnd && (this.#canvasContainer.scrollLeft = endX + left)
 
         this.#canvasContainer.addEventListener("wheel", e => {
@@ -188,7 +190,7 @@ export class ChartDrawings {
 
         if (!Init.isMobile) {
             Store.sub('asTaras', (_, asTaras) => {
-                this.#legendSvg.remove()
+                this.#legendSvg && this.#legendSvg.remove()
                 this.#drawLegendCanvas()
 
                 for (let i = 0; i < this.#columns; i++) {
@@ -212,7 +214,7 @@ export class ChartDrawings {
                 eoption: { fill: theme.red, key: 'eFeel' }
             }
 
-            Store.sub('onOptionClick', (_, current) => {
+            this.#legendSvg && Store.sub('onOptionClick', (_, current) => {
                 this.#legendSvg.remove()
                 this.#drawLegendCanvas()
 
@@ -233,6 +235,7 @@ export class ChartDrawings {
                 }
             })
         }
+        Init.isHorizontal && (this.#chartContainer.style.height = 'auto')
     }
 
     #canvasEvents() {
@@ -275,6 +278,9 @@ export class ChartDrawings {
     }
 
     #drawLegendCanvas() {
+        if (Init.isHorizontal)
+            return;
+        
         const legendSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
         legendSvg.id = 'legend-canvas'
         legendSvg.classList = 'legend-canvas'
