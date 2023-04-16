@@ -7,6 +7,7 @@ export class MenuItems {
     static inject(data) {
         const menuContent = document.getElementById('menuContent')
         menuContent.innerHTML = menuItems
+        menuContent.scrollTo(0, 0)
         
         const menutTitle = document.getElementById('menuTitle');
         
