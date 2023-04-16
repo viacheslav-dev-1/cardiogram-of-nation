@@ -15,6 +15,38 @@
 
         .modal-title {
             text-align: center;
+             &.menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: #3f3f3f 1px solid;
+
+            .back-btn {
+                margin-right: auto;
+                padding: 5px;
+                width: 20px;
+                svg {
+                    display: none;
+                }
+            }
+            .close-btn {
+                margin-left: auto;
+                padding: 5px;
+            }
+
+            .back-btn, .close-btn {
+                cursor: pointer;
+                transition: .15s;
+            }
+
+            .back-btn:active, .close-btn:active {
+                transform: scale(0.9);
+                transition: .15s;
+            }
+            h4 {
+                margin: 0;
+            }
+           }
          }
 
          .details-title {
@@ -52,6 +84,26 @@
             }
         }
 
+        .modal-main.menu {
+            height: calc(100% - 50px);
+
+            .menu-item {
+                align-items: center;
+                padding: 10px;
+                border-top: none;
+                border-bottom: #3f3f3f 1px solid;
+                height: 30px;
+
+                &.n:active {
+                    background-color: transparent;
+                }
+            }
+
+            .menu-item:active {
+                background: #343434;
+            }
+        }
+
         .modal-main {
             width: 100%;
             display: flex;
@@ -75,12 +127,12 @@
             }
 
             .zeros-list {
-                margin-top: 5px;
+                align-items: center;
+                margin-top: 15px;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 margin-left: 15px;
-                overflow: auto;
 
                 .zero-item {
                     display: flex;

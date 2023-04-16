@@ -18,15 +18,16 @@ body {
 }
 
 .action-panel {
-    height: 30px;
     display: flex;
     gap: 5px;
-    margin-top: 10px;
+    font-size: 12px;
+    margin-top: -5px;
 
     .label {
         display: flex;
         gap: 5px;
         cursor: pointer;
+        align-items: center;
 
         &.yellow-label {
             .sq {
@@ -48,29 +49,35 @@ body {
     }
 }
 
-.sq {
-    width: 20px;
-    border-radius: 100px;
-    height: 20px;
-}
-
 .opt-active {
     border-radius: 5px;
-    padding: 7px;
+    padding: 3px 5px;
     height: 20px;
     background: #4e4e4e;
+    margin-top: 7px;
 }
 
 .opt-inactive {
     border-radius: 5px;
-    padding: 7px;
+    padding: 3px 5px;
     height: 20px;
+    margin-top: 7px;
+}
+
+.opt-active, .opt-inactive {
+    .sq {
+        width: 12px;
+        height: 12px;
+        border-radius: 100px;
+    }
 }
 
 .war-day {
     align-self: center;
-    margin-left: 10px;
     margin-top: -5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .war-day-input {
@@ -82,8 +89,10 @@ body {
     outline: none;
     font-weight: bold;
     width: 30px;
-    padding: 5px;
+    padding: 3px;
     text-align: center;
+    font-size: 12px;
+    background: black;
 }
 
 .war-day-input:focus {

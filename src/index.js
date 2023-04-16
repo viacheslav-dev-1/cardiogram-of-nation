@@ -33,7 +33,7 @@ function start() {
     Store.mut('prevHor', window.innerHeight < 600 ? 'h' : 'v')
 
     const warDay = Init.warDay
-    HeaderComponent.inject({ warDay })
+    HeaderComponent.inject({ warDay, isMobile: Init.isMobile })
     LoaderComponent.inject()
 
     Init.firebase()

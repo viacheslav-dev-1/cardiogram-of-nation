@@ -7,6 +7,18 @@ export class HeaderComponent {
 
         const warDay = data.warDay
         const daysInput = document.getElementById('war-day-input')
+
+        if (data.isMobile) {
+            daysInput.addEventListener('click', () => {
+                daysInput.style.scale = '3'
+            })
+
+            document.body.addEventListener('click', e => {
+                e.target.id === 'war-day-input' ||
+                    (daysInput.style.scale = '1')
+            })
+        }
+        
         daysInput.value = warDay
         daysInput.maxLength = warDay.toString().length
         daysInput.addEventListener('input', () => {

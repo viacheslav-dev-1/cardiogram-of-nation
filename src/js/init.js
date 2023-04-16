@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { ModalComponent } from '../components/modal';
+import { MenuComponent } from '../components/menu';
 import { Ocontainer } from '../components/ocontainer';
-import { SettingsComponent } from '../components/settings';
 import { Store } from './store/store2';
 
 export class Init {
@@ -51,16 +50,11 @@ export class Init {
     }
 
     static menu() {
-        const zerosBtn = document.getElementById('zerosBtn')
-        zerosBtn.addEventListener('click', () => {
-            ModalComponent.inject()
+        const menu = document.getElementById('menu')
+        menu.addEventListener('click', () => {
+            MenuComponent.inject({ isMobile: this.isMobile })
         })
-
-        const infoBtn = document.getElementById('info')
-        infoBtn.addEventListener('click', () => {
-            SettingsComponent.inject({ isMobile: this.isMobile })
-        })
-
+        
         Ocontainer.inject({ isMobile: this.isMobile, isHorizontal: this.isHorizontal })
     }
 
