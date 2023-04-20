@@ -1,10 +1,4 @@
 .header {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    font-size: 12px;
-    margin-top: -2px;
-
     div.menu {
         cursor: pointer;
         transition: .15s;
@@ -28,18 +22,32 @@
         display: flex;
         margin-right: auto;
 
-        div.icon {
+        .war-day {
+            align-self: center;
+            margin-top: -5px;
             display: flex;
-            width: 62px;
-            height: 58px;
             align-items: center;
-            justify-content: center;
-            border-radius: 100px;
-            margin: 0 10px 0 5%;
-        }
-
-        .icon.icon-none {
-            display: none;
+            gap: 5px;
+        
+            .war-day-input {
+                background: transparent;
+                font-family: 'e-Ukraine Head';
+                color: #c9c9c9;
+                border: #c9c9c9 2px solid;
+                border-radius: 5px;
+                outline: none;
+                font-weight: bold;
+                width: 30px;
+                padding: 3px;
+                text-align: center;
+                font-size: 12px;
+                background: black;
+            }
+            
+            .war-day-input:focus {
+                border: #53b1f9 2px solid;
+                color: #53b1f9;
+            }
         }
 
         div.title {
@@ -53,7 +61,6 @@
             }
         }
     }
-
 }
 
 .subtitle {
@@ -64,4 +71,3 @@
         cursor: pointer;
     }
 }
-

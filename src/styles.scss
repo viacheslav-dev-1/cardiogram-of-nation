@@ -11,101 +11,11 @@ body {
     height: 100%;
 }
 
-.container {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-}
-
-.action-panel {
-    display: flex;
-    gap: 5px;
-    font-size: 12px;
-    margin-top: -5px;
-
-    .label {
-        display: flex;
-        gap: 5px;
-        cursor: pointer;
-        align-items: center;
-
-        &.yellow-label {
-            .sq {
-                background-color: #fffb00;
-            }
-        }
-
-        &.blue-label {
-            .sq {
-                background-color: #53b1f9;
-            }
-        }
-
-        &.red-label {
-            .sq {
-                background-color: #ff5f5f;
-            }
-        }
-    }
-}
-
-.opt-active {
-    border-radius: 5px;
-    padding: 3px 5px;
-    height: 20px;
-    background: #4e4e4e;
-    margin-top: 7px;
-}
-
-.opt-inactive {
-    border-radius: 5px;
-    padding: 3px 5px;
-    height: 20px;
-    margin-top: 7px;
-}
-
-.opt-active, .opt-inactive {
-    .sq {
-        width: 12px;
-        height: 12px;
-        border-radius: 100px;
-    }
-}
-
-.war-day {
-    align-self: center;
-    margin-top: -5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.war-day-input {
-    background: transparent;
-    font-family: 'e-Ukraine Head';
-    color: #c9c9c9;
-    border: #c9c9c9 2px solid;
-    border-radius: 5px;
-    outline: none;
-    font-weight: bold;
-    width: 30px;
-    padding: 3px;
-    text-align: center;
-    font-size: 12px;
-    background: black;
-}
-
-.war-day-input:focus {
-    border: #53b1f9 2px solid;
-    color: #53b1f9;
-}
-
-a {
+a[href] {
     text-decoration: none;
     color: rgb(83, 177, 249);
 }
 
-.warning {
-    padding: 3px;
-    color: yellow
+h4 {
+    margin: 0;
 }

@@ -1,4 +1,5 @@
-import { DetailsComponent } from "../../components/details"
+import DetailsContentPart from "../../components/details-modal/content-part/content-part"
+import ModalComponent from "../../components/modal/modal"
 import { Init } from "../init"
 import { Store } from "../store/store2"
 import { Arrow } from "./arrow"
@@ -248,7 +249,16 @@ export class ChartDrawings {
                 }
 
                 const day = parseInt(dayStr)
-                DetailsComponent.inject(day)
+                //DetailsComponent.inject(day)
+                const modal = new ModalComponent()
+                modal.mount({ 
+                    isMobile: Init.isMobile,
+                    modalData: {
+                        titleTemplate: import('../../components/details-modal/title-part/title-part.html'),
+                        contentRef: DetailsContentPart,
+                        data: { day }
+                    }
+                })
             }
         })
     }

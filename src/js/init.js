@@ -1,6 +1,4 @@
 import { initializeApp } from 'firebase/app'
-import { MenuComponent } from '../components/menu';
-import { Ocontainer } from '../components/ocontainer';
 import { Store } from './store/store2';
 
 export class Init {
@@ -47,15 +45,6 @@ export class Init {
 
     static store() {
         Store.init()
-    }
-
-    static menu() {
-        const menu = document.getElementById('menu')
-        menu.addEventListener('click', () => {
-            MenuComponent.inject({ isMobile: this.isMobile })
-        })
-        
-        Ocontainer.inject({ isMobile: this.isMobile, isHorizontal: this.isHorizontal })
     }
 
     static date(date) {

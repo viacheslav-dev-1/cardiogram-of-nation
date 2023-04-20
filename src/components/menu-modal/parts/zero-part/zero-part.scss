@@ -1,0 +1,19 @@
+.zeros-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 15px;
+    align-items: center;
+
+    .zero-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 20px;
+
+        &.f {
+            margin-left: -360px;
+        }
+    }
+}

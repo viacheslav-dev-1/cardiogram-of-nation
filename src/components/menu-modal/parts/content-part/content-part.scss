@@ -1,0 +1,27 @@
+.menu-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .menu-item {
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+        border-top: none;
+        height: 30px;
+        padding: 15px;
+        font-size: 14px;
+        border-bottom: #545454 1px solid;
+        display: flex;
+        gap: 10px;
+
+        &.n:hover {
+            cursor: default;
+            background-color: transparent;
+        }
+    }
+
+    .menu-item:hover {
+        background: #343434;
+    }
+}

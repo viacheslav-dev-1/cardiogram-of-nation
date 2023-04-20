@@ -1,0 +1,41 @@
+.action-panel {
+    .label {
+        display: flex;
+        gap: 5px;
+        cursor: pointer;
+        align-items: center;
+
+        &.yellow-label {
+            .sq {
+                background-color: #fffb00;
+            }
+        }
+
+        &.blue-label {
+            .sq {
+                background-color: #53b1f9;
+            }
+        }
+
+        &.red-label {
+            .sq {
+                background-color: #ff5f5f;
+            }
+        }
+        &.opt-active, &.opt-inactive {
+            border-radius: 5px;
+            padding: 3px 5px;
+            height: 20px;
+            margin-top: 7px;
+            
+            .sq {
+                width: 12px;
+                height: 12px;
+                border-radius: 100px;
+            }
+        }
+        &.opt-active {
+            background: #4e4e4e;
+        }
+    }
+}
