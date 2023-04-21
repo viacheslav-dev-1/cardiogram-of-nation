@@ -5,6 +5,7 @@ import MenuContentPart from '../menu-modal/parts/content-part/content-part'
 import UtilsService from '../../services/utils-service'
 import template from './header.html'
 import titleTemplate from '../menu-modal/parts/title-part/title-part.html'
+import EventHandler from '../../event-handler/event-handler'
 
 export default class HeaderComponent extends Component {
     mount(anchor) {
@@ -12,24 +13,35 @@ export default class HeaderComponent extends Component {
             anchor,
             template
         })
-        
+
         const warDay = UtilsService.warDay
         const daysInput = this.find('#war-day-input')
         daysInput.value = warDay
         daysInput.maxLength = warDay.toString().length
-        daysInput.addEventListener('input', () => {
-            daysInput.value < 1 || daysInput.value > warDay && (daysInput.value = warDay)
-            Store.mut('daysInput', daysInput.value)
-        })
 
-        daysInput.addEventListener('keypress', e => e.key.length === 1 && /\D/.test(e.key) && e.preventDefault())
+        const events = [
+            {
+                event: 'input',
+                func: () => {
+                    daysInput.value < 1 || daysInput.value > warDay && (daysInput.value = warDay)
+                    Store.mut('daysInput', daysInput.value)
+                }
+            },
+            {
+                event: 'keypress',
+                func: e => e.key.length === 1 && /\D/.test(e.key) && e.preventDefault()
+            }
+        ]
 
-        const menu = this.find('#menu')
-        menu.addEventListener('click', () => {
-            new ModalComponent().mount({ modalData: {
-                titleTemplate,
-                contentRef: MenuContentPart
-            }})
+        EventHandler.subFew(daysInput, events)
+
+        EventHandler.sub(this.find('#menu'), 'click', () => {
+            new ModalComponent().mount({
+                modalData: {
+                    titleTemplate,
+                    contentRef: MenuContentPart
+                }
+            })
         })
     }
 }

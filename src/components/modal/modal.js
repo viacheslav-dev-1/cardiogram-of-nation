@@ -1,7 +1,13 @@
+import EventHandler from "../../event-handler/event-handler";
 import Component from "../component";
 import template from './modal.html'
 
 export default class ModalComponent extends Component {
+
+    #backBtn = undefined
+    #closeBtn = undefined
+    #contentInstance = undefined
+
     mount({ modalData }) {
         super.mount({
             anchor: 'modalMask',
@@ -18,18 +24,28 @@ export default class ModalComponent extends Component {
 
         if (contentRef) {
             this.#createContentInstance(contentRef, data)
-            const backBtn = this.find('#backBtn').querySelector('svg')
-            backBtn.addEventListener('click', () => {
-                backBtn.style.display = 'none'
+            this.#backBtn = this.find('#backBtn svg')
+
+            EventHandler.sub(this.#backBtn, 'click', () => {
+                this.#contentInstance && this.#contentInstance.unmount()
+                this.#backBtn.style.display = 'none'
                 modalTitle.innerHTML = titleTemplate
                 this.#createContentInstance(contentRef, data)
             })
         }
 
-        this.find('#closeModalBtn').addEventListener('click', () => {
+        this.#closeBtn = this.find('#closeModalBtn')
+        EventHandler.sub(this.#closeBtn, 'click', () => {
             this.unmount()
             onClose && onClose()
         })
+    }
+
+    unmount() {
+        this.#contentInstance && this.#contentInstance.unmount()
+        this.#backBtn && EventHandler.unsub(this.#backBtn)
+        this.#closeBtn && EventHandler.unsub(this.#closeBtn)
+        super.unmount()
     }
 
     #createContentInstance(contentRef, data) {
@@ -40,6 +56,7 @@ export default class ModalComponent extends Component {
                 dialogRef: this,
                 data
             })
+            this.#contentInstance = contentInstance
         }
     }
 }

@@ -32,8 +32,7 @@ export default class DetailsContentPart extends Component {
 
         const day = data.day < 10 ? '0'+data.day : data.day
         const ia = data.day > 400 ? '' : '.ia'
-        this.find('#video')
-            .getElementsByTagName('source')[0]
+        this.find('#video source')
             .src = `https://ia601605.us.archive.org/12/items/taras_bilka_bilchenia-cardiogram_of_ukraine_nation/${day}_taras_bilka-chronicles_of_ua_war-day_${data.day}${ia}.mp4`
     }
 }

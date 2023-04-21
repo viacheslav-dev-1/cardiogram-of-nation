@@ -7,6 +7,7 @@ import { Figure } from "./figure"
 import { Label } from "./label"
 
 import titleTemplate from '../components/details-modal/title-part/title-part.html'
+import EventHandler from "../event-handler/event-handler"
 
 export default class ChartDrawings {
     #columns
@@ -26,7 +27,7 @@ export default class ChartDrawings {
             console.error('There is not container specified for chart. Please provide a valid one')
             return
         }
-        
+
         const canvasContainer = document.createElement('div')
         canvasContainer.style.display = 'flex'
         canvasContainer.style.flexDirection = 'column'
@@ -35,7 +36,7 @@ export default class ChartDrawings {
         canvasContainer.style.height = '100%'
         canvasContainer.className = 'canvas-container'
         this.#canvasContainer = canvasContainer
-        
+
         const chartSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
         chartSvg.id = 'chart-canvas'
         this.#chartSvg = chartSvg
@@ -54,8 +55,8 @@ export default class ChartDrawings {
     draw(theme, chartHeight, legendHeight, options) {
         const { offsetWidth, offsetHeight } = this.#canvasContainer
 
-        const chartSize = UtilsService.isHorizontal 
-            ? [offsetWidth, offsetHeight] 
+        const chartSize = UtilsService.isHorizontal
+            ? [offsetWidth, offsetHeight]
             : [offsetWidth, offsetHeight * (chartHeight ? chartHeight : UtilsService.isMobile ? 0.5 : 0.4)]
         const legendSize = [offsetWidth, offsetHeight * (legendHeight ? legendHeight : (UtilsService.isMobile ? (UtilsService.isIOS ? 0.4 : 0.5) : 0.6))] // TODO: for Chrome and Safari on IOS reduce height
         this.#legendHeight = legendSize[1]
@@ -91,7 +92,7 @@ export default class ChartDrawings {
             if ((i + 1) % 365 === 0) {
                 new Figure('text').draw({
                     x: nX, y: headerCirclePadding + circleLineGap + 5, fill: theme.yellow, outline: 'none',
-                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer', id: 'svg-day-' + (i+1)
+                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer', id: 'svg-day-' + (i + 1)
                 }, this.#chartSvg, true, { text: ((i + 1) / 365) + ' РІК' })
 
                 new Figure('line').draw({ x1: nX, y1: vgap, x2: nX, y2: chartHeight - dotGap, strokeWidth: 3, stroke: theme.yellow, class: 'appear-animation' }, this.#chartSvg, true)
@@ -102,7 +103,7 @@ export default class ChartDrawings {
 
                 new Figure('text').draw({
                     x: nX, y: headerCirclePadding + circleLineGap + 5, fill: textColor, outline: 'none',
-                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer', id: 'svg-day-' + (i+1)
+                    textAnchor: 'middle', class: 'svg-circle-text', cursor: 'pointer', id: 'svg-day-' + (i + 1)
                 }, this.#chartSvg, true, { text: (i + 1) + '' })
             }
 
@@ -154,7 +155,7 @@ export default class ChartDrawings {
                 if (!data[i + 1].line) {
                     let nextDay = 0;
                     let nextLine = 0;
-                    for (let k = 1;;k++) {
+                    for (let k = 1; ; k++) {
                         const d = data[i + k + 1]
                         if (!!d.line) {
                             nextDay = d.day
@@ -242,7 +243,7 @@ export default class ChartDrawings {
     }
 
     #canvasEvents() {
-        this.#chartSvg.addEventListener('click', e => {
+        EventHandler.sub(this.#chartSvg, 'click', e => {
             const id = e.target?.id
             if (id && id.includes('svg-day')) {
                 const dayStr = id.split('-')[2]
@@ -251,9 +252,8 @@ export default class ChartDrawings {
                 }
 
                 const day = parseInt(dayStr)
-                //DetailsComponent.inject(day)
                 const modal = new ModalComponent()
-                modal.mount({ 
+                modal.mount({
                     isMobile: UtilsService.isMobile,
                     modalData: {
                         titleTemplate,
@@ -292,7 +292,7 @@ export default class ChartDrawings {
     #drawLegendCanvas() {
         if (UtilsService.isHorizontal)
             return;
-        
+
         const legendSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
         legendSvg.id = 'legend-canvas'
         legendSvg.classList = 'legend-canvas'
