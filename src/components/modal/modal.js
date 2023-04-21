@@ -1,9 +1,7 @@
 import Component from "../component";
-import './modal.scss'
 
 export default class ModalComponent extends Component {
     async mount({ isMobile, modalData }) {
-        isMobile && import('./modal-mobile.scss')
         await super.mount({
             anchor: 'modalMask',
             template: import('./modal.html'),

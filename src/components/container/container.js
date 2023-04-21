@@ -1,7 +1,6 @@
 import ActionPanel from '../action-panel/action-panel'
 import Component from '../component'
 import HeaderComponent from '../header/header'
-import './container.scss'
 
 export default class Container extends Component {
     async mount({ warDay, isMobile, isHorizontal }) {

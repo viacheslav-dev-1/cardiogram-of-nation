@@ -2,11 +2,9 @@ import { Store } from '../../js/store/store2'
 import Component from '../component'
 import ModalComponent from '../modal/modal'
 import MenuContentPart from '../menu-modal/parts/content-part/content-part'
-import './header.scss'
 
 export default class HeaderComponent extends Component {
     async mount({ warDay, isMobile }) {
-        isMobile ? import('./header-mobile.scss') : import('./header-desktop.scss')
         await super.mount({
             anchor: 'header',
             template: import('./header.html')

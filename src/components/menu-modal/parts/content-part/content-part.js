@@ -1,7 +1,5 @@
 import Component from "../../../component";
 import { Store } from "../../../../js/store/store2";
-import './content-part.scss'
-import '../info-part/info-part.scss'
 
 export default class MenuContentPart extends Component {
     async mount(modalData) {
@@ -33,15 +31,12 @@ export default class MenuContentPart extends Component {
         const infoItem = this.find('#infoItem')
         infoItem.addEventListener('click', async () => {
             backBtn.style.display = 'block'
-            await import('../info-part/info-part.scss')
             content.innerHTML = (await import('../info-part/info-part.html')).default
         })
 
         const zeroItem = this.find('#zeroItem')
         zeroItem.addEventListener('click', async () => {
             backBtn.style.display = 'block'
-            await import('../zero-part/zero-part.scss')
-            isMobile && (await import('../zero-part/zero-part-mobile.scss'))
             content.innerHTML = (await import('../zero-part/zero-part.html')).default
         })
     }

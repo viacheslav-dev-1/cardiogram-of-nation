@@ -1,6 +1,6 @@
 import DetailsContentPart from "../../components/details-modal/content-part/content-part"
 import ModalComponent from "../../components/modal/modal"
-import { Init } from "../init"
+import UtilsService from "../../services/utils-service"
 import { Store } from "../store/store2"
 import { Arrow } from "./arrow"
 import { Figure } from "./figure"
@@ -52,10 +52,10 @@ export class ChartDrawings {
     draw(theme, chartHeight, legendHeight, options) {
         const { offsetWidth, offsetHeight } = this.#canvasContainer
 
-        const chartSize = Init.isHorizontal 
+        const chartSize = UtilsService.isHorizontal 
             ? [offsetWidth, offsetHeight] 
-            : [offsetWidth, offsetHeight * (chartHeight ? chartHeight : Init.isMobile ? 0.5 : 0.4)]
-        const legendSize = [offsetWidth, offsetHeight * (legendHeight ? legendHeight : (Init.isMobile ? (Init.isIOS ? 0.4 : 0.5) : 0.6))] // TODO: for Chrome and Safari on IOS reduce height
+            : [offsetWidth, offsetHeight * (chartHeight ? chartHeight : UtilsService.isMobile ? 0.5 : 0.4)]
+        const legendSize = [offsetWidth, offsetHeight * (legendHeight ? legendHeight : (UtilsService.isMobile ? (UtilsService.isIOS ? 0.4 : 0.5) : 0.6))] // TODO: for Chrome and Safari on IOS reduce height
         this.#legendHeight = legendSize[1]
 
         this.#chartSvg.style.height = chartSize[1] + 'px'
@@ -182,14 +182,14 @@ export class ChartDrawings {
 
             cur && circle.use({ x: cur[0], y: cur[1], fill: theme.darker, stroke: theme.bright, class: 'appear-animation' }, this.#chartSvg)
 
-            if (!Init.isMobile) {
+            if (!UtilsService.isMobile) {
                 const asTaras = localStorage.getItem('asTaras') == 1 ? true : false
                 const ly = this.#legendHeight / 3
                 this.#drawLabels(asTaras, cur, i, item, theme, data.length)
             }
         }
 
-        if (!Init.isMobile) {
+        if (!UtilsService.isMobile) {
             Store.sub('asTaras', (_, asTaras) => {
                 this.#legendSvg && this.#legendSvg.remove()
                 this.#drawLegendCanvas()
@@ -208,7 +208,7 @@ export class ChartDrawings {
             })
         }
 
-        if (Init.isMobile) {
+        if (UtilsService.isMobile) {
             const predefined = {
                 coption: { fill: theme.yellow, key: 'cFeel', zero: 'cZero' },
                 soption: { fill: theme.blue, key: 'sFeel', zero: 'sZero' },
@@ -228,7 +228,7 @@ export class ChartDrawings {
                     const cur = grid.get(curKey);
                     const { fill, zero, key } = predefined[current]
 
-                    const paddingTop = Init.isIOS ? 5 : 20
+                    const paddingTop = UtilsService.isIOS ? 5 : 20
                     cur && item[key] !== undefined && new Label().draw(cur[0], paddingTop, this.#legendHeight - 50, {
                         fill, textColor: theme.darker,
                         stroke: zero && item[zero] ? theme.zeroStroke : null
@@ -236,7 +236,7 @@ export class ChartDrawings {
                 }
             })
         }
-        Init.isHorizontal && (this.#chartContainer.style.height = 'auto')
+        UtilsService.isHorizontal && (this.#chartContainer.style.height = 'auto')
     }
 
     #canvasEvents() {
@@ -252,7 +252,7 @@ export class ChartDrawings {
                 //DetailsComponent.inject(day)
                 const modal = new ModalComponent()
                 modal.mount({ 
-                    isMobile: Init.isMobile,
+                    isMobile: UtilsService.isMobile,
                     modalData: {
                         titleTemplate: import('../../components/details-modal/title-part/title-part.html'),
                         contentRef: DetailsContentPart,
@@ -288,7 +288,7 @@ export class ChartDrawings {
     }
 
     #drawLegendCanvas() {
-        if (Init.isHorizontal)
+        if (UtilsService.isHorizontal)
             return;
         
         const legendSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')

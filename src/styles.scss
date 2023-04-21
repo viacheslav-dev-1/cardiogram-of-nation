@@ -19,3 +19,160 @@ a[href] {
 h4 {
     margin: 0;
 }
+
+
+/* Toggle styles */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(175, 175, 175);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #53b1f9;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
+}
+
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Chart styles */
+
+#chart {
+    height: calc(100vh - 60px);
+    width: 100%;
+}
+
+.chart-canvas {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    height: 100%;
+}
+
+.svg-circle-text,
+.svg-polygon-text {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    transition: 0.1s;
+    text-decoration: underline;
+}
+
+.svg-circle-text:hover {
+    font-size: 24px;
+    transition: 0.1s;
+}
+
+
+/* Animations */
+
+@keyframes grow {
+    0% {
+        transform: scaley(0)
+    }
+
+    100% {
+        transform: scaley(1)
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(0.9)
+    }
+
+    100% {
+        transform: scale(1)
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.scale-animation {
+    animation: scale 0.3s forwards;
+}
+
+.grow-animation {
+    animation: grow 0.5s forwards;
+}
+
+.appear-animation {
+    animation: appear 1s forwards;
+}
+
+.svg-polygon {
+    animation: grow 0.5s forwards;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

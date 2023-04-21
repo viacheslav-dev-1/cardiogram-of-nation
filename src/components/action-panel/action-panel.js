@@ -1,5 +1,4 @@
 import Component from "../component"
-import './action-panel.scss'
 import { Store } from '../../js/store/store2'
 
 export default class ActionPanel extends Component {

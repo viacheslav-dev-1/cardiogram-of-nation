@@ -1,12 +1,9 @@
 import { Store } from '../../../js/store/store2'
 import Component from '../../component'
-import './content-part.scss'
 
 export default class DetailsContentPart extends Component {
     async mount(modalData) {
         const { isMobile, anchor, dialogRef, data } = modalData
-
-        isMobile && await import('./content-part-mobile.scss')
         await super.mount({
             anchor,
             template: import('./content-part.html')
