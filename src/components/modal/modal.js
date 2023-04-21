@@ -1,18 +1,18 @@
 import Component from "../component";
+import template from './modal.html'
 
 export default class ModalComponent extends Component {
     async mount({ isMobile, modalData }) {
         await super.mount({
             anchor: 'modalMask',
-            template: import('./modal.html'),
+            template,
             display: 'inherit'
         })
         const { titleTemplate, contentRef, data, onClose } = modalData
         const modalTitle = this.find('#modalTitle')
 
         if (titleTemplate) {
-            const titleHtml = titleTemplate.then ? (await titleTemplate).default : titleTemplate
-            modalTitle.innerHTML = titleHtml
+            modalTitle.innerHTML = titleTemplate
         }
 
         if (contentRef) {
@@ -20,7 +20,7 @@ export default class ModalComponent extends Component {
             const backBtn = this.find('#backBtn').querySelector('svg')
             backBtn.addEventListener('click', async () => {
                 backBtn.style.display = 'none'
-                modalTitle.innerHTML = (await titleTemplate).default
+                modalTitle.innerHTML = titleTemplate
                 await this.#createContentInstance(contentRef, isMobile, data)
             })
         }

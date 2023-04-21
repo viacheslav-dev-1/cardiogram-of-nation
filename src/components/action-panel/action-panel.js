@@ -1,11 +1,12 @@
 import Component from "../component"
+import template from './action-panel.html'
 import { Store } from '../../js/store/store2'
 
 export default class ActionPanel extends Component {
     async mount({ isMobile }) {
         await super.mount({
             anchor: isMobile ? 'ocontainerTop' : 'ocontainerBottom',
-            template: import('./action-panel.html')
+            template
         })
 
         if (isMobile) {

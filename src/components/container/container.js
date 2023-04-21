@@ -1,12 +1,13 @@
 import ActionPanel from '../action-panel/action-panel'
 import Component from '../component'
 import HeaderComponent from '../header/header'
+import template from './container.html'
 
 export default class Container extends Component {
     async mount({ warDay, isMobile, isHorizontal }) {
         await super.mount({
             anchor: 'body',
-            template: import('./container.html')
+            template
         })
 
         if (isMobile) {

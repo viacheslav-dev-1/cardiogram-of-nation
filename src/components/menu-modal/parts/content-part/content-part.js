@@ -1,12 +1,15 @@
 import Component from "../../../component";
 import { Store } from "../../../../js/store/store2";
+import template from "./content-part.html"
+import info from "../info-part/info-part.html"
+import zero from "../zero-part/zero-part.html"
 
 export default class MenuContentPart extends Component {
     async mount(modalData) {
         const { isMobile, anchor, dialogRef } = modalData
         await super.mount({
             anchor,
-            template: import('./content-part.html')
+            template
         })
 
         if (isMobile) {
@@ -32,14 +35,14 @@ export default class MenuContentPart extends Component {
         infoItem.addEventListener('click', async () => {
             backBtn.style.display = 'block'
             title.innerText = 'Інформація'
-            content.innerHTML = (await import('../info-part/info-part.html')).default
+            content.innerHTML = info
         })
 
         const zeroItem = this.find('#zeroItem')
         zeroItem.addEventListener('click', async () => {
             backBtn.style.display = 'block'
             title.innerText = 'Стани Zero-Point'
-            content.innerHTML = (await import('../zero-part/zero-part.html')).default
+            content.innerHTML = zero
         })
     }
 }

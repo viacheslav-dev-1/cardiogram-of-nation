@@ -16,11 +16,10 @@ export default class Component {
         this.#anchor = anchor
 
         try {
-            const t = (await template).default
             const element = document.getElementById(anchor)
             if (element === null || element === undefined)
                 throw new Error(`Element with anchor ${anchor} is not found`)
-            element.innerHTML = t
+            element.innerHTML = template
             display === null || (element.style.display = display)
             this.#element = element
             this.#copy = element.cloneNode(true)

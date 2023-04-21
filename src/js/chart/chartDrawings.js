@@ -6,6 +6,8 @@ import { Arrow } from "./arrow"
 import { Figure } from "./figure"
 import { Label } from "./label"
 
+import titleTemplate from '../../components/details-modal/title-part/title-part.html'
+
 export class ChartDrawings {
     #columns
     #rows
@@ -254,7 +256,7 @@ export class ChartDrawings {
                 modal.mount({ 
                     isMobile: UtilsService.isMobile,
                     modalData: {
-                        titleTemplate: import('../../components/details-modal/title-part/title-part.html'),
+                        titleTemplate,
                         contentRef: DetailsContentPart,
                         data: { day }
                     }
