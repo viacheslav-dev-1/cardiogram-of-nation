@@ -1,9 +1,17 @@
 <div id="detailsContent" class="details-content">
-    <div class="video">
+    <div id="videoContainer" class="video">
         <video id="video" controls>
             <source type="video/mp4">
             Ваш браузер не підтримує програвання відео.
         </video>
+    </div>
+    <div id="warningPanel" class="warning-panel">
+        Через специфіку функціонала завантаження відео за посиланням, система IOS часто блокує його. Тому, якщо відео недоступне тут,
+        воно доступне за посиланням нижче.
+        <div>
+            <br>
+            <a id="videoLink" target="_blank">Посилання на відео</a>
+        </div>
     </div>
     <div class="details-item">
         <div>

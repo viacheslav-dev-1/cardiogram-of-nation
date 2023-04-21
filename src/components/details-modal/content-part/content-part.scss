@@ -4,6 +4,23 @@
     flex-direction: column;
     font-size: 14px;
 
+    .warning-panel {
+        border: yellow 2px solid;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+        font-size: 12px;
+        text-align: justify;
+        display: none;
+
+        a {
+            font-size: 14px;
+            text-decoration: underline;
+            color: #53b1f9;
+            user-select: none;
+        }
+    }
+
     .video {
         display: flex;
         justify-content: center;
