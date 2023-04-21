@@ -2,8 +2,8 @@ import Component from "../component";
 import template from './modal.html'
 
 export default class ModalComponent extends Component {
-    async mount({ modalData }) {
-        await super.mount({
+    mount({ modalData }) {
+        super.mount({
             anchor: 'modalMask',
             template,
             display: 'inherit'
@@ -17,12 +17,12 @@ export default class ModalComponent extends Component {
         }
 
         if (contentRef) {
-            await this.#createContentInstance(contentRef, data)
+            this.#createContentInstance(contentRef, data)
             const backBtn = this.find('#backBtn').querySelector('svg')
-            backBtn.addEventListener('click', async () => {
+            backBtn.addEventListener('click', () => {
                 backBtn.style.display = 'none'
                 modalTitle.innerHTML = titleTemplate
-                await this.#createContentInstance(contentRef, data)
+                this.#createContentInstance(contentRef, data)
             })
         }
 
@@ -32,10 +32,10 @@ export default class ModalComponent extends Component {
         })
     }
 
-    async #createContentInstance(contentRef, data) {
+    #createContentInstance(contentRef, data) {
         if (contentRef) {
             const contentInstance = new contentRef()
-            await contentInstance.mount({
+            contentInstance.mount({
                 anchor: 'modalContent',
                 dialogRef: this,
                 data

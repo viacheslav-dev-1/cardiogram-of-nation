@@ -3,7 +3,7 @@ export default class Component {
     #element = undefined
     #copy = undefined
 
-    async mount({ anchor, template, display = null }) {
+    mount({ anchor, template, display = null }) {
         let error = ''
         template === undefined || template === null && (error = 'Template path should not be empty')
         this.#isBlank(anchor) && (error = 'Anchor element Id should not be empty')

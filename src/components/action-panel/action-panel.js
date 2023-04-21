@@ -4,8 +4,8 @@ import { Store } from '../../js/store/store2'
 import UtilsService from "../../services/utils-service"
 
 export default class ActionPanel extends Component {
-    async mount(anchor) {
-        await super.mount({
+    mount(anchor) {
+        super.mount({
             anchor,
             template
         })

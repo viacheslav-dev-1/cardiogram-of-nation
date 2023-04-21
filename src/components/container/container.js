@@ -5,8 +5,8 @@ import UtilsService from '../../services/utils-service'
 import template from './container.html'
 
 export default class Container extends Component {
-    async mount(anchor) {
-        await super.mount({
+    mount(anchor) {
+        super.mount({
             anchor,
             template
         })
@@ -24,7 +24,7 @@ export default class Container extends Component {
 
         this.find('#container').style.display = 'flex'
 
-        await new HeaderComponent().mount('header')
-        await new ActionPanel().mount(UtilsService.isMobile ? 'ocontainerTop' : 'ocontainerBottom')
+        new HeaderComponent().mount('header')
+        new ActionPanel().mount(UtilsService.isMobile ? 'ocontainerTop' : 'ocontainerBottom')
     }
 }

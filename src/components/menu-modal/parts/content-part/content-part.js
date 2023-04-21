@@ -6,9 +6,9 @@ import zero from "../zero-part/zero-part.html"
 import UtilsService from "../../../../services/utils-service";
 
 export default class MenuContentPart extends Component {
-    async mount(modalData) {
+    mount(modalData) {
         const { anchor, dialogRef } = modalData
-        await super.mount({
+        super.mount({
             anchor,
             template
         })
@@ -33,14 +33,14 @@ export default class MenuContentPart extends Component {
         const content = this.find('#menuContent')
         
         const infoItem = this.find('#infoItem')
-        infoItem.addEventListener('click', async () => {
+        infoItem.addEventListener('click', () => {
             backBtn.style.display = 'block'
             title.innerText = 'Інформація'
             content.innerHTML = info
         })
 
         const zeroItem = this.find('#zeroItem')
-        zeroItem.addEventListener('click', async () => {
+        zeroItem.addEventListener('click', () => {
             backBtn.style.display = 'block'
             title.innerText = 'Стани Zero-Point'
             content.innerHTML = zero
