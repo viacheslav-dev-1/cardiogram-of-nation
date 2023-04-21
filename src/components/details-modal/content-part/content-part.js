@@ -36,13 +36,8 @@ export default class DetailsContentPart extends Component {
             .src = `https://ia601605.us.archive.org/12/items/taras_bilka_bilchenia-cardiogram_of_ukraine_nation/${day}_taras_bilka-chronicles_of_ua_war-day_${data.day}${ia}.mp4`
 
         const video = this.find('#video')
-        const interval = setInterval(() => {
-            this.find('#eFeel').innerText = video?.readyState
-            this.find('#trigger').innerText = video.duration
-            if (video.readyState >= 3) {
-                clearInterval(interval)
-                //this.find('#trigger').innerText = video.duration
-            }
-        })
+        video.onloadeddata = () => {
+            this.find('#trigger').innerText = '!!!!LOADED'
+        }
     }
 }
