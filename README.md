@@ -6,6 +6,9 @@
 <br>Сайт опубліковано тут: https://cardiogram-of-nation.vercel.app
 <br> <b>Тримаймось! Все буде Україна!</b>
 
-![Screenshot 2023-03-28 at 11 20 15](https://user-images.githubusercontent.com/50410811/228174463-51ff5532-d382-469b-ae32-67b5dea12b7c.png)
-![Screenshot 2023-03-28 at 11 22 53](https://user-images.githubusercontent.com/50410811/228175084-4b0d08f1-e055-4a81-9b1e-b849f353ca53.png)
-![Screenshot 2023-03-28 at 11 25 24](https://user-images.githubusercontent.com/50410811/228175804-a2e032d9-d18b-4fff-9451-8d218f5ae844.png)
+![Screenshot 2023-04-22 at 02 41 45](https://user-images.githubusercontent.com/50410811/233749442-bd5e8fa4-954e-4100-aad7-9a0704a45817.png)
+![Screenshot 2023-04-22 at 02 42 32](https://user-images.githubusercontent.com/50410811/233749505-0228c962-1534-4b03-8129-c3a531281933.png)
+![Screenshot 2023-04-22 at 02 43 25](https://user-images.githubusercontent.com/50410811/233749542-0027b925-f491-415f-9a72-5657a185ae92.png)
+![Screenshot 2023-04-22 at 02 44 10](https://user-images.githubusercontent.com/50410811/233749590-0db2cfc7-14de-48df-a8f5-2172184bdc56.png)
+![IMAGE 2023-04-22 02:46:13](https://user-images.githubusercontent.com/50410811/233749719-bafb1117-2ac3-40e0-901c-f889b6e6ae9e.jpg)
+![IMAGE 2023-04-22 02:48:46](https://user-images.githubusercontent.com/50410811/233749861-d70b34fd-e74c-4c1d-9fb6-8a39723500d4.jpg)
