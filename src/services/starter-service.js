@@ -10,12 +10,12 @@ export default class StarterService {
         Store.init()
 
         const warDay = UtilsService.warDay
-        await new Container().mount()
+        await new Container().mount('body')
 
         UtilsService.setPrevSize()
 
         const loader = new LoaderComponent()
-        await loader.mount()
+        await loader.mount('loader')
 
         const db = FirebaseService.initialize()
         const drawings = new ChartDrawings('chart', warDay, 7)

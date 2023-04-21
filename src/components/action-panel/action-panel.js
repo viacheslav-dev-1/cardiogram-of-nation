@@ -4,9 +4,9 @@ import { Store } from '../../js/store/store2'
 import UtilsService from "../../services/utils-service"
 
 export default class ActionPanel extends Component {
-    async mount() {
+    async mount(anchor) {
         await super.mount({
-            anchor: UtilsService.isMobile ? 'ocontainerTop' : 'ocontainerBottom',
+            anchor,
             template
         })
 

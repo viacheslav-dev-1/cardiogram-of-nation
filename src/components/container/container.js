@@ -5,14 +5,13 @@ import UtilsService from '../../services/utils-service'
 import template from './container.html'
 
 export default class Container extends Component {
-    async mount() {
+    async mount(anchor) {
         await super.mount({
-            anchor: 'body',
+            anchor,
             template
         })
 
         const isMobile = UtilsService.isMobile
-        const warDay = UtilsService.warDay
         const isHorizontal = UtilsService.isHorizontal
 
         if ( isMobile) {
@@ -25,7 +24,7 @@ export default class Container extends Component {
 
         this.find('#container').style.display = 'flex'
 
-        await new HeaderComponent().mount()
-        await new ActionPanel().mount()
+        await new HeaderComponent().mount('header')
+        await new ActionPanel().mount(UtilsService.isMobile ? 'ocontainerTop' : 'ocontainerBottom')
     }
 }

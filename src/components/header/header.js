@@ -7,9 +7,9 @@ import template from './header.html'
 import titleTemplate from '../menu-modal/parts/title-part/title-part.html'
 
 export default class HeaderComponent extends Component {
-    async mount() {
+    async mount(anchor) {
         await super.mount({
-            anchor: 'header',
+            anchor,
             template
         })
         
