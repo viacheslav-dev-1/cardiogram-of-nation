@@ -1,16 +1,21 @@
 import ActionPanel from '../action-panel/action-panel'
 import Component from '../component'
 import HeaderComponent from '../header/header'
+import UtilsService from '../../services/utils-service'
 import template from './container.html'
 
 export default class Container extends Component {
-    async mount({ warDay, isMobile, isHorizontal }) {
+    async mount() {
         await super.mount({
             anchor: 'body',
             template
         })
 
-        if (isMobile) {
+        const isMobile = UtilsService.isMobile
+        const warDay = UtilsService.warDay
+        const isHorizontal = UtilsService.isHorizontal
+
+        if ( isMobile) {
             this.find('.bottom-action-panel').style.display = 'none'
         }
 
@@ -20,7 +25,7 @@ export default class Container extends Component {
 
         this.find('#container').style.display = 'flex'
 
-        await new HeaderComponent().mount({ warDay, isMobile })
-        await new ActionPanel().mount({ isMobile })
+        await new HeaderComponent().mount()
+        await new ActionPanel().mount()
     }
 }

@@ -10,7 +10,7 @@ export default class StarterService {
         Store.init()
 
         const warDay = UtilsService.warDay
-        await new Container().mount({ warDay, isMobile: UtilsService.isMobile, isHorizontal: UtilsService.isHorizontal })
+        await new Container().mount()
 
         UtilsService.setPrevSize()
 

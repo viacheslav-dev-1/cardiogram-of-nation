@@ -2,16 +2,18 @@ import { Store } from '../../js/store/store2'
 import Component from '../component'
 import ModalComponent from '../modal/modal'
 import MenuContentPart from '../menu-modal/parts/content-part/content-part'
+import UtilsService from '../../services/utils-service'
 import template from './header.html'
 import titleTemplate from '../menu-modal/parts/title-part/title-part.html'
 
 export default class HeaderComponent extends Component {
-    async mount({ warDay, isMobile }) {
+    async mount() {
         await super.mount({
             anchor: 'header',
             template
         })
-
+        
+        const warDay = UtilsService.warDay
         const daysInput = this.find('#war-day-input')
         daysInput.value = warDay
         daysInput.maxLength = warDay.toString().length
@@ -24,7 +26,7 @@ export default class HeaderComponent extends Component {
 
         const menu = this.find('#menu')
         menu.addEventListener('click', () => {
-            new ModalComponent().mount({isMobile, modalData: {
+            new ModalComponent().mount({ modalData: {
                 titleTemplate,
                 contentRef: MenuContentPart
             }})

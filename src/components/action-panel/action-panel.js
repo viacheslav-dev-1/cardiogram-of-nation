@@ -1,15 +1,16 @@
 import Component from "../component"
 import template from './action-panel.html'
 import { Store } from '../../js/store/store2'
+import UtilsService from "../../services/utils-service"
 
 export default class ActionPanel extends Component {
-    async mount({ isMobile }) {
+    async mount() {
         await super.mount({
-            anchor: isMobile ? 'ocontainerTop' : 'ocontainerBottom',
+            anchor: UtilsService.isMobile ? 'ocontainerTop' : 'ocontainerBottom',
             template
         })
 
-        if (isMobile) {
+        if (UtilsService.isMobile) {
             const def = this.find('#coption')
             def.classList.add('opt-active')
             def.classList.remove('opt-inactive')

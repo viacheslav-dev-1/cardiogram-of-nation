@@ -4,7 +4,7 @@ import template from './content-part.html'
 
 export default class DetailsContentPart extends Component {
     async mount(modalData) {
-        const { isMobile, anchor, dialogRef, data } = modalData
+        const { anchor, dialogRef, data } = modalData
         await super.mount({
             anchor,
             template

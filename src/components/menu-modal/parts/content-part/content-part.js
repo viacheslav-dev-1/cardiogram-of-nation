@@ -3,16 +3,17 @@ import { Store } from "../../../../js/store/store2";
 import template from "./content-part.html"
 import info from "../info-part/info-part.html"
 import zero from "../zero-part/zero-part.html"
+import UtilsService from "../../../../services/utils-service";
 
 export default class MenuContentPart extends Component {
     async mount(modalData) {
-        const { isMobile, anchor, dialogRef } = modalData
+        const { anchor, dialogRef } = modalData
         await super.mount({
             anchor,
             template
         })
 
-        if (isMobile) {
+        if (UtilsService.isMobile) {
             this.find('#asTaras').remove()
         } else {
             let asTarasB = localStorage.getItem('asTaras') == 1 ? true : false
