@@ -1,6 +1,6 @@
 import { Subject } from "./subject"
 
-export class Store {
+export default class Store {
     static #interval = null
     static #subjects = []
 

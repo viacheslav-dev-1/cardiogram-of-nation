@@ -1,5 +1,5 @@
 import Component from "../../../component";
-import { Store } from "../../../../js/store/store2";
+import Store from "../../../../store/store2";
 import template from "./content-part.html"
 import info from "../info-part/info-part.html"
 import zero from "../zero-part/zero-part.html"

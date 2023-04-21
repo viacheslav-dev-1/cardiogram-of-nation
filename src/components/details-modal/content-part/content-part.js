@@ -1,4 +1,4 @@
-import { Store } from '../../../js/store/store2'
+import Store from '../../../store/store2'
 import Component from '../../component'
 import template from './content-part.html'
 

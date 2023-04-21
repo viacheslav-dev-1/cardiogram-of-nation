@@ -1,4 +1,4 @@
-import { Store } from "../js/store/store2";
+import Store from "../store/store2";
 
 export default class UtilsService {
     static #clientWidth = undefined

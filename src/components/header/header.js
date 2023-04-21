@@ -1,4 +1,4 @@
-import { Store } from '../../js/store/store2'
+import Store from '../../store/store2'
 import Component from '../component'
 import ModalComponent from '../modal/modal'
 import MenuContentPart from '../menu-modal/parts/content-part/content-part'

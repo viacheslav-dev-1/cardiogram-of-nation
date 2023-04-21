@@ -1,6 +1,6 @@
 import Component from "../component"
 import template from './action-panel.html'
-import { Store } from '../../js/store/store2'
+import Store from '../../store/store2'
 import UtilsService from "../../services/utils-service"
 
 export default class ActionPanel extends Component {

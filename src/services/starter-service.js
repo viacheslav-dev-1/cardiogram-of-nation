@@ -1,6 +1,6 @@
 import { ChartDrawings } from '../js/chart/chartDrawings';
 import LoaderComponent from '../components/loader/loader'
-import { Store } from '../js/store/store2'
+import Store from '../store/store2'
 import Container from '../components/container/container'
 import UtilsService from '../services/utils-service';
 import FirebaseService from '../services/firebase-service';
