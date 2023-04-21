@@ -37,9 +37,11 @@ export default class DetailsContentPart extends Component {
 
         const video = this.find('#video')
         const interval = setInterval(() => {
+            this.find('#eFeel').innerText = video?.readyState
+            this.find('#trigger').innerText = video.duration
             if (video.readyState >= 3) {
                 clearInterval(interval)
-                alert(video.duration)
+                //this.find('#trigger').innerText = video.duration
             }
         })
     }
