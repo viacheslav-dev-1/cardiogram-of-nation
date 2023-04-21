@@ -1,4 +1,4 @@
-import { ChartDrawings } from '../js/chart/chartDrawings';
+import ChartDrawings from '../chart/chartDrawings';
 import LoaderComponent from '../components/loader/loader'
 import Store from '../store/store2'
 import Container from '../components/container/container'
