@@ -31,12 +31,14 @@ export default class MenuContentPart extends Component {
         const infoItem = this.find('#infoItem')
         infoItem.addEventListener('click', async () => {
             backBtn.style.display = 'block'
+            title.innerText = 'Інформація'
             content.innerHTML = (await import('../info-part/info-part.html')).default
         })
 
         const zeroItem = this.find('#zeroItem')
         zeroItem.addEventListener('click', async () => {
             backBtn.style.display = 'block'
+            title.innerText = 'Стани Zero-Point'
             content.innerHTML = (await import('../zero-part/zero-part.html')).default
         })
     }
