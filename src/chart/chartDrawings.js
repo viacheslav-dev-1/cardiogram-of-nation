@@ -254,7 +254,6 @@ export default class ChartDrawings {
                 const day = parseInt(dayStr)
                 const modal = new ModalComponent()
                 modal.mount({
-                    isMobile: UtilsService.isMobile,
                     modalData: {
                         titleTemplate,
                         contentRef: DetailsContentPart,
