@@ -5,6 +5,7 @@ import info from "../info-part/info-part.html"
 import zero from "../zero-part/zero-part.html"
 import UtilsService from "../../../../services/utils-service";
 import On from "../../../../event-handler/on";
+import Wait from "../../../../routine/wait";
 
 export default class MenuContentPart extends Component {
     #infoItem = undefined
@@ -30,7 +31,7 @@ export default class MenuContentPart extends Component {
             On.change(this.#toggle, () => {
                 asTarasB = !asTarasB
                 localStorage.setItem('asTaras', asTarasB ? 1 : 0)
-                setTimeout(() => Store.mut('asTaras', asTarasB), 450)
+                Wait.for(450).then(() => Store.mut('asTaras', asTarasB))
             })
         }
 

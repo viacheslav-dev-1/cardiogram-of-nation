@@ -4,6 +4,7 @@ import Container from '../components/container/container'
 import UtilsService from '../services/utils-service';
 import FirebaseService from '../services/firebase-service';
 import Factory from '../components/component-factory';
+import Wait from '../routine/wait';
 
 export default class StarterService {
     static async start() {
@@ -27,13 +28,14 @@ export default class StarterService {
             localStorage.setItem('lastUpdate', UtilsService.date(Date.now()))
             localStorage.setItem('emotionsData', JSON.stringify(sorted))
         } else {
-            setTimeout(() => {
-                container.loader.unmount()
-                const dataLs = localStorage.getItem('emotionsData')
-                const sorted = JSON.parse(dataLs).sort((prev, next) => parseInt(prev.day) > parseInt(next.day) ? 1 : -1)
-                Store.mut('eventData', sorted)
-                drawings.draw({ darker: 'black', dark: '#3e3e3e', bright: '#c9c9c9', blue: '#53b1f9', yellow: '#fffb00', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
-            }, 600)
+            
+            await Wait.for(600)
+            
+            container.loader.unmount()
+            const dataLs = localStorage.getItem('emotionsData')
+            const sorted = JSON.parse(dataLs).sort((prev, next) => parseInt(prev.day) > parseInt(next.day) ? 1 : -1)
+            Store.mut('eventData', sorted)
+            drawings.draw({ darker: 'black', dark: '#3e3e3e', bright: '#c9c9c9', blue: '#53b1f9', yellow: '#fffb00', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
         }
     }
 }
