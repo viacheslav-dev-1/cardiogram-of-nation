@@ -3,7 +3,7 @@ export default class Factory {
         const component = new componentRef()
         let anchor = data?.anchor
         data || (data = {})
-        anchor && !(data instanceof String) || (data.anchor = component.defaultAnchor)
+        anchor && !(data instanceof String) || (data.anchor = component.constructor.name)
         component.mount(data)
         return component;
     }
