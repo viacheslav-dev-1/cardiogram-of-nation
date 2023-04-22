@@ -39,8 +39,8 @@ export default class DetailsContentPart extends Component {
             this.find('#videoContainer').style.display = 'none'
             this.find('#warningPanel').style.display = 'block'
             this.find('#videoLink').href = src
+        } else {
+            this.find('#video source').src = src
         }
-        
-        this.find('#video source').src = src
     }
 }

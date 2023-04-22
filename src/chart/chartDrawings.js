@@ -8,6 +8,7 @@ import { Label } from "./label"
 
 import titleTemplate from '../components/details-modal/title-part/title-part.html'
 import EventHandler from "../event-handler/event-handler"
+import Factory from "../components/component-factory"
 
 export default class ChartDrawings {
     #columns
@@ -247,19 +248,11 @@ export default class ChartDrawings {
             const id = e.target?.id
             if (id && id.includes('svg-day')) {
                 const dayStr = id.split('-')[2]
-                if (!dayStr) {
+                if (!dayStr)
                     return;
-                }
 
                 const day = parseInt(dayStr)
-                const modal = new ModalComponent()
-                modal.mount({
-                    modalData: {
-                        titleTemplate,
-                        contentRef: DetailsContentPart,
-                        data: { day }
-                    }
-                })
+                Factory.mount(ModalComponent, { modalData: { titleTemplate, contentRef: DetailsContentPart, data: { day } } })
             }
         })
     }

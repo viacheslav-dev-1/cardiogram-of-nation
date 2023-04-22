@@ -5,7 +5,7 @@ import UtilsService from "../../services/utils-service"
 import EventHandler from "../../event-handler/event-handler"
 
 export default class ActionPanel extends Component {
-    mount(anchor) {
+    mount({anchor}) {
         super.mount({
             anchor,
             template

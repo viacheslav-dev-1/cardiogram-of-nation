@@ -1,5 +1,6 @@
 import EventHandler from "../../event-handler/event-handler";
 import Component from "../component";
+import Factory from "../component-factory";
 import template from './modal.html'
 
 export default class ModalComponent extends Component {
@@ -8,9 +9,9 @@ export default class ModalComponent extends Component {
     #closeBtn = undefined
     #contentInstance = undefined
 
-    mount({ modalData }) {
+    mount({ anchor, modalData }) {
         super.mount({
-            anchor: 'modalMask',
+            anchor,
             template,
             display: 'inherit'
         })
@@ -50,8 +51,7 @@ export default class ModalComponent extends Component {
 
     #createContentInstance(contentRef, data) {
         if (contentRef) {
-            const contentInstance = new contentRef()
-            contentInstance.mount({
+            const contentInstance = Factory.mount(contentRef, {
                 anchor: 'modalContent',
                 dialogRef: this,
                 data

@@ -6,9 +6,10 @@ import UtilsService from '../../services/utils-service'
 import template from './header.html'
 import titleTemplate from '../menu-modal/parts/title-part/title-part.html'
 import EventHandler from '../../event-handler/event-handler'
+import Factory from '../component-factory'
 
 export default class HeaderComponent extends Component {
-    mount(anchor) {
+    mount({ anchor }) {
         super.mount({
             anchor,
             template
@@ -35,13 +36,7 @@ export default class HeaderComponent extends Component {
 
         EventHandler.subFew(daysInput, events)
 
-        EventHandler.sub(this.find('#menu'), 'click', () => {
-            new ModalComponent().mount({
-                modalData: {
-                    titleTemplate,
-                    contentRef: MenuContentPart
-                }
-            })
-        })
+        EventHandler.sub(this.find('#menu'), 'click', () => 
+            Factory.mount(ModalComponent, { modalData: { titleTemplate, contentRef: MenuContentPart } }))
     }
 }

@@ -2,10 +2,14 @@ import ActionPanel from '../action-panel/action-panel'
 import Component from '../component'
 import HeaderComponent from '../header/header'
 import UtilsService from '../../services/utils-service'
+import Factory from '../component-factory'
 import template from './container.html'
+import LoaderComponent from '../loader/loader'
 
 export default class Container extends Component {
-    mount(anchor) {
+    #loader = undefined
+    
+    mount({anchor}) {
         super.mount({
             anchor,
             template
@@ -24,7 +28,15 @@ export default class Container extends Component {
 
         this.find('#container').style.display = 'flex'
 
-        new HeaderComponent().mount('header')
-        new ActionPanel().mount(UtilsService.isMobile ? 'ocontainerTop' : 'ocontainerBottom')
+        this.#loader = Factory.mount(LoaderComponent)
+        
+        Factory.mount(HeaderComponent)
+
+        if (UtilsService.isMobile) Factory.mount(ActionPanel, { anchor: 'ActionPanelTop' })
+        else Factory.mount(ActionPanel)
+    }
+
+    get loader() {
+        return this.#loader
     }
 }
