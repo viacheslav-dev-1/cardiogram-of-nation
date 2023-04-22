@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
+const { EsbuildPlugin } = require('esbuild-loader')
 
 module.exports = {
     entry: "./src/index",
@@ -42,5 +43,12 @@ module.exports = {
     },
     devServer: {
         port: 3000
+    },
+    optimization: {
+        minimizer: [
+            new EsbuildPlugin({
+                keepNames: true,
+            })
+        ]
     }
 }
