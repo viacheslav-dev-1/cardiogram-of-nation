@@ -3,7 +3,7 @@ export default class Wait {
         return new Promise((resolve, _) => setTimeout(resolve, time))
     }
 
-    static for(func, time = 0) {
+    static func(func, time = 0) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 try {
@@ -17,7 +17,7 @@ export default class Wait {
         })
     }
 
-    static forAsync(func, time = 0) {
+    static funcAsync(func, time = 0) {
         return new Promise((resolve, reject) => {
             setTimeout(async () => {
                 try {
