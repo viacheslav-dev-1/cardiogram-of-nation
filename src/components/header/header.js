@@ -9,6 +9,8 @@ import EventHandler from '../../event-handler/event-handler'
 import Factory from '../component-factory'
 
 export default class HeaderComponent extends Component {
+    defaultAnchor = 'HeaderComponent'
+    
     mount({ anchor }) {
         super.mount({
             anchor,

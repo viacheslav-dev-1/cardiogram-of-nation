@@ -4,6 +4,7 @@ import Factory from "../component-factory";
 import template from './modal.html'
 
 export default class ModalComponent extends Component {
+    defaultAnchor = 'ModalComponent'
 
     #backBtn = undefined
     #closeBtn = undefined
