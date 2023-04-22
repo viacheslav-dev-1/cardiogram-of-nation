@@ -7,8 +7,8 @@ import { Figure } from "./figure"
 import { Label } from "./label"
 
 import titleTemplate from '../components/details-modal/title-part/title-part.html'
-import EventHandler from "../event-handler/event-handler"
 import Factory from "../components/component-factory"
+import On from "../event-handler/on"
 
 export default class ChartDrawings {
     #columns
@@ -244,7 +244,7 @@ export default class ChartDrawings {
     }
 
     #canvasEvents() {
-        EventHandler.sub(this.#chartSvg, 'click', e => {
+        On.click(this.#chartSvg, e => {
             const id = e.target?.id
             if (id && id.includes('svg-day')) {
                 const dayStr = id.split('-')[2]

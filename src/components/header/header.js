@@ -5,8 +5,8 @@ import MenuContentPart from '../menu-modal/parts/content-part/content-part'
 import UtilsService from '../../services/utils-service'
 import template from './header.html'
 import titleTemplate from '../menu-modal/parts/title-part/title-part.html'
-import EventHandler from '../../event-handler/event-handler'
 import Factory from '../component-factory'
+import On from '../../event-handler/on'
 
 export default class HeaderComponent extends Component {
     mount({ anchor }) {
@@ -20,23 +20,15 @@ export default class HeaderComponent extends Component {
         daysInput.value = warDay
         daysInput.maxLength = warDay.toString().length
 
-        const events = [
-            {
-                event: 'input',
-                func: () => {
-                    daysInput.value < 1 || daysInput.value > warDay && (daysInput.value = warDay)
-                    Store.mut('daysInput', daysInput.value)
-                }
+        On.few(daysInput, {
+            input: () => {
+                daysInput.value < 1 || daysInput.value > warDay && (daysInput.value = warDay)
+                Store.mut('daysInput', daysInput.value)
             },
-            {
-                event: 'keypress',
-                func: e => e.key.length === 1 && /\D/.test(e.key) && e.preventDefault()
-            }
-        ]
+            keypress: e => e.key.length === 1 && /\D/.test(e.key) && e.preventDefault()
+        })
 
-        EventHandler.subFew(daysInput, events)
-
-        EventHandler.sub(this.find('#menu'), 'click', () => 
-            Factory.mount(ModalComponent, { modalData: { titleTemplate, contentRef: MenuContentPart } }))
+        const menu = this.find('#menu')
+        On.click(menu, () => Factory.mount(ModalComponent, { modalData: { titleTemplate, contentRef: MenuContentPart } }))
     }
 }

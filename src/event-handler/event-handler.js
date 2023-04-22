@@ -13,10 +13,6 @@ export default class EventHandler {
         node.addEventListener(event, func)
     }
 
-    static subFew(node, events) {
-        events.forEach(e => this.sub(node, e.event, e.func))
-    }
-
     static unsub(node) {
         try {
             let targetEvents = []

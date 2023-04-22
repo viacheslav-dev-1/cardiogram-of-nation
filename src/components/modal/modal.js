@@ -1,4 +1,4 @@
-import EventHandler from "../../event-handler/event-handler";
+import On from "../../event-handler/on";
 import Component from "../component";
 import Factory from "../component-factory";
 import template from './modal.html'
@@ -26,7 +26,7 @@ export default class ModalComponent extends Component {
             this.#createContentInstance(contentRef, data)
             this.#backBtn = this.find('#backBtn svg')
 
-            EventHandler.sub(this.#backBtn, 'click', () => {
+            On.click(this.#backBtn, () => {
                 this.#contentInstance && this.#contentInstance.unmount()
                 this.#backBtn.style.display = 'none'
                 modalTitle.innerHTML = titleTemplate
@@ -35,7 +35,8 @@ export default class ModalComponent extends Component {
         }
 
         this.#closeBtn = this.find('#closeModalBtn')
-        EventHandler.sub(this.#closeBtn, 'click', () => {
+
+        On.click(this.#closeBtn, () => {
             this.unmount()
             onClose && onClose()
         })
@@ -43,8 +44,8 @@ export default class ModalComponent extends Component {
 
     unmount() {
         this.#contentInstance && this.#contentInstance.unmount()
-        this.#backBtn && EventHandler.unsub(this.#backBtn)
-        this.#closeBtn && EventHandler.unsub(this.#closeBtn)
+        this.#backBtn && On.unsub(this.#backBtn)
+        this.#closeBtn && On.unsub(this.#closeBtn)
         super.unmount()
     }
 

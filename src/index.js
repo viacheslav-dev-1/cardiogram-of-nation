@@ -10,12 +10,12 @@ import './components/menu-modal/parts/info-part/info-part.scss'
 import './components/menu-modal/parts/zero-part/zero-part.scss'
 import './images/favicon.png'
 
-import UtilsService from './services/utils-service';
-import StyleLoaderService from './services/style-loader-service';
-import StarterService from './services/starter-service';
-import EventHandler from './event-handler/event-handler'
+import UtilsService from './services/utils-service'
+import StyleLoaderService from './services/style-loader-service'
+import StarterService from './services/starter-service'
+import On from './event-handler/on'
 
 (() => {
-    EventHandler.sub(window, 'resize', () => UtilsService.resize())
-    StyleLoaderService.load().then(() => StarterService.start())
+    On.resize(UtilsService.resize)
+    StyleLoaderService.load().then(StarterService.start)
 })()

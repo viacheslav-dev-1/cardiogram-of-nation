@@ -2,10 +2,10 @@ import Component from "../component"
 import template from './action-panel.html'
 import Store from '../../store/store2'
 import UtilsService from "../../services/utils-service"
-import EventHandler from "../../event-handler/event-handler"
+import On from "../../event-handler/on"
 
 export default class ActionPanel extends Component {
-    mount({anchor}) {
+    mount({ anchor }) {
         super.mount({
             anchor,
             template
@@ -16,7 +16,7 @@ export default class ActionPanel extends Component {
             def.classList.add('opt-active')
             def.classList.remove('opt-inactive')
 
-            EventHandler.sub(this.element, 'click', e => {
+            On.click(this.element, e => {
                 const els = this.findAll('.label')
                 const el = e.target.closest('.label')
 

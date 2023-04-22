@@ -4,7 +4,7 @@ import template from "./content-part.html"
 import info from "../info-part/info-part.html"
 import zero from "../zero-part/zero-part.html"
 import UtilsService from "../../../../services/utils-service";
-import EventHandler from "../../../../event-handler/event-handler";
+import On from "../../../../event-handler/on";
 
 export default class MenuContentPart extends Component {
     #infoItem = undefined
@@ -27,7 +27,7 @@ export default class MenuContentPart extends Component {
             asTarasB || toggle.removeAttribute('checked')
 
             this.#toggle = toggle
-            EventHandler.sub(this.#toggle, 'change', () => {
+            On.change(this.#toggle, () => {
                 asTarasB = !asTarasB
                 localStorage.setItem('asTaras', asTarasB ? 1 : 0)
                 setTimeout(() => Store.mut('asTaras', asTarasB), 450)
@@ -40,7 +40,8 @@ export default class MenuContentPart extends Component {
         
         const infoItem = this.find('#infoItem')
         this.#infoItem = infoItem
-        EventHandler.sub(this.#infoItem, 'click', () => {
+
+        On.click(this.#infoItem, () => {
             backBtn.style.display = 'block'
             title.innerText = 'Інформація'
             content.innerHTML = info
@@ -48,7 +49,8 @@ export default class MenuContentPart extends Component {
 
         const zeroItem = this.find('#zeroItem')
         this.#zeroItem = zeroItem
-        EventHandler.sub(this.#zeroItem, 'click', () => {
+
+        On.click(this.#zeroItem, () => {
             backBtn.style.display = 'block'
             title.innerText = 'Стани Zero-Point'
             content.innerHTML = zero
@@ -56,8 +58,8 @@ export default class MenuContentPart extends Component {
     }
 
     unmount() {
-        this.#toggle && EventHandler.unsub(this.#toggle)
-        this.#infoItem && EventHandler.unsub(this.#infoItem)
-        this.#zeroItem && EventHandler.unsub(this.#zeroItem)
+        this.#toggle && On.unsub(this.#toggle)
+        this.#infoItem && On.unsub(this.#infoItem)
+        this.#zeroItem && On.unsub(this.#zeroItem)
     }
 }
