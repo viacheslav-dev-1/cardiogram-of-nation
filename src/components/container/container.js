@@ -7,8 +7,6 @@ import template from './container.html'
 import LoaderComponent from '../loader/loader'
 
 export default class Container extends Component {
-    defaultAnchor = 'Container'
-
     #loader = undefined
     
     mount({anchor}) {
