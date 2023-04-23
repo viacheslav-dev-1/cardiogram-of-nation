@@ -8,6 +8,7 @@ import './components/details-modal/content-part/content-part.scss'
 import './components/menu-modal/parts/content-part/content-part.scss'
 import './components/menu-modal/parts/info-part/info-part.scss'
 import './components/menu-modal/parts/zero-part/zero-part.scss'
+import './components/menu-modal/parts/video-part/video-part.scss'
 import './images/favicon.png'
 
 import UtilsService from './services/utils-service'
