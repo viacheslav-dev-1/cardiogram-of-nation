@@ -57,6 +57,7 @@ export default class ModalComponent extends Component {
                 data
             })
             this.#contentInstance = contentInstance
+            this.find('#modalContent').scrollTo(0, 0)
         }
     }
 }

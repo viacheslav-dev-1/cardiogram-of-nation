@@ -26,8 +26,11 @@
         }
 
         &.subtitle:hover, &.n:hover {
-            cursor: default;
-            background-color: transparent;
+            cursor: default
+        }
+
+        &.n:hover {
+            background: none;
         }
 
         &.warning {
