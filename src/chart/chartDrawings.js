@@ -9,6 +9,7 @@ import { Label } from "./label"
 import titleTemplate from '../components/details-modal/title-part/title-part.html'
 import Factory from "../components/component-factory"
 import On from "../event-handler/on"
+import Ls from "../services/local-storage-service"
 
 export default class ChartDrawings {
     #columns
@@ -187,7 +188,7 @@ export default class ChartDrawings {
             cur && circle.use({ x: cur[0], y: cur[1], fill: theme.darker, stroke: theme.bright, class: 'appear-animation' }, this.#chartSvg)
 
             if (!UtilsService.isMobile) {
-                const asTaras = localStorage.getItem('asTaras') == 1 ? true : false
+                const asTaras = Ls.get('asTaras')
                 const ly = this.#legendHeight / 3
                 this.#drawLabels(asTaras, cur, i, item, theme, data.length)
             }

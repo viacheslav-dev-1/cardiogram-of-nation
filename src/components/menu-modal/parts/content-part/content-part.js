@@ -6,6 +6,7 @@ import On from "../../../../event-handler/on";
 import Wait from "../../../../routine/wait";
 import MenuService from "../../../../services/menu-service";
 import { menuConfig } from "../../menu-config";
+import Ls from "../../../../services/local-storage-service";
 
 export default class MenuContentPart extends Component {
     #items = []
@@ -20,14 +21,14 @@ export default class MenuContentPart extends Component {
         if (UtilsService.isMobile) {
             this.find('#asTaras').remove()
         } else {
-            let asTarasB = localStorage.getItem('asTaras') == 1 ? true : false
+            let asTarasB = Ls.get('asTaras')
             const toggle = this.find('#asTarasToggle')
             asTarasB && toggle.setAttribute('checked', 'true')
             asTarasB || toggle.removeAttribute('checked')
 
             On.change(toggle, () => {
                 asTarasB = !asTarasB
-                localStorage.setItem('asTaras', asTarasB ? 1 : 0)
+                Ls.set({ asTaras: asTarasB })
                 Wait.for(450).then(() => Store.mut('asTaras', asTarasB))
             })
 
