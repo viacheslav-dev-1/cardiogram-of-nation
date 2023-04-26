@@ -19,6 +19,15 @@
             cursor: default;
             background-color: transparent;
         }
+
+        &.warning {
+            cursor: default;
+            border: #d6aa29 2px solid;
+            a {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
     }
 
     .menu-item:hover {
