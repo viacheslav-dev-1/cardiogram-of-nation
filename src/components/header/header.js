@@ -1,4 +1,4 @@
-import Store from '../../store/store2'
+import Store from 'a-simple-store/src/store'
 import Component from '../component'
 import ModalComponent from '../modal/modal'
 import MenuContentPart from '../menu-modal/parts/content-part/content-part'
@@ -23,7 +23,7 @@ export default class HeaderComponent extends Component {
         On.few(daysInput, {
             input: () => {
                 daysInput.value < 1 || daysInput.value > warDay && (daysInput.value = warDay)
-                Store.mut('daysInput', daysInput.value)
+                Store.instance.mut('daysInput', daysInput.value)
             },
             keypress: e => e.key.length === 1 && /\D/.test(e.key) && e.preventDefault()
         })

@@ -1,7 +1,7 @@
 import DetailsContentPart from "../components/details-modal/content-part/content-part"
 import ModalComponent from "../components/modal/modal"
 import UtilsService from "../services/utils-service"
-import Store from "../store/store2"
+import Store from 'a-simple-store/src/store'
 import { Arrow } from "./arrow"
 import { Figure } from "./figure"
 import { Label } from "./label"
@@ -67,7 +67,7 @@ export default class ChartDrawings {
         this.#legendSvg && (this.#legendSvg.style.height = legendSize[1] + 'px')
 
         const grid = this.#drawGrid(chartSize[1], theme, options)
-        const data = Store.get('eventData').cur
+        const data = Store.instance.get('eventData').cur
         this.#drawChart(data, grid, theme, options)
     }
 
@@ -127,7 +127,7 @@ export default class ChartDrawings {
             this.#canvasContainer.scrollLeft += e.deltaY;
         });
 
-        Store.sub('daysInput', (prev, cur) => {
+        Store.instance.sub('daysInput', (prev, cur) => {
             cur != '' && points && (this.#canvasContainer.scrollLeft = points.get(this.#point(cur, 1))[0] - 10)
         })
 
@@ -195,7 +195,7 @@ export default class ChartDrawings {
         }
 
         if (!UtilsService.isMobile) {
-            Store.sub('asTaras', (_, asTaras) => {
+            Store.instance.sub('asTaras', (_, asTaras) => {
                 this.#legendSvg && this.#legendSvg.remove()
                 this.#drawLegendCanvas()
 
@@ -220,7 +220,7 @@ export default class ChartDrawings {
                 eoption: { fill: theme.red, key: 'eFeel' }
             }
 
-            this.#legendSvg && Store.sub('onOptionClick', (_, current) => {
+            this.#legendSvg && Store.instance.sub('onOptionClick', (_, current) => {
                 this.#legendSvg.remove()
                 this.#drawLegendCanvas()
 

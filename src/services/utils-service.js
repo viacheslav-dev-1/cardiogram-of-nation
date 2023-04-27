@@ -1,4 +1,4 @@
-import Store from "../store/store2";
+import Store from 'a-simple-store/src/store'
 
 export default class UtilsService {
     static #clientWidth = undefined
@@ -34,8 +34,8 @@ export default class UtilsService {
     }
 
     static resize() {
-        const prevMob = Store.get('prevMob')?.cur
-        const prevHor = Store.get('prevHor')?.cur
+        const prevMob = Store.instance.get('prevMob')?.cur
+        const prevHor = Store.instance.get('prevHor')?.cur
         const { innerWidth, innerHeight } = window
 
         if ((prevMob === 'm' && !(innerWidth < 800 && innerHeight < 800)) ||
@@ -46,7 +46,7 @@ export default class UtilsService {
     }
 
     static setPrevSize() {
-        Store.mut('prevMob', window.innerWidth < 800 && window.innerHeight < 800 ? 'm' : 'd')
-        Store.mut('prevHor', window.innerHeight < 600 ? 'h' : 'v')
+        Store.instance.mut('prevMob', window.innerWidth < 800 && window.innerHeight < 800 ? 'm' : 'd')
+        Store.instance.mut('prevHor', window.innerHeight < 600 ? 'h' : 'v')
     }
 }
