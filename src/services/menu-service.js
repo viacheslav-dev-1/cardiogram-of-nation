@@ -1,7 +1,9 @@
 import On from "../event-handler/on"
+import Factory from "../components/component-factory"
 
 export default class MenuService {
     #subs = []
+    #componentInstance = undefined
     static #instance = undefined
 
     static get instance() {
@@ -46,10 +48,12 @@ export default class MenuService {
             On.click(itemEl, () => {
                 backBtn.style.display = 'block'
                 title.innerText = item.title
-                content.innerHTML = item.content
-                item.extraBindings?.length > 0 && item.extraBindings.forEach(it =>
-                    dialogRef.find(it.anchor)[it.prop ? it.prop : 'innerHTML'] = it.content)
 
+                if (item.component) {
+                    let componentData = { anchor: 'menuContent' }
+                    item.extras && (componentData = { ...componentData, ...item.extras })
+                    this.#componentInstance = Factory.mount(item.component, componentData)
+                }
             })
             this.#subs.push(itemEl)
         })
@@ -57,5 +61,6 @@ export default class MenuService {
 
     destroy() {
         this.#subs.forEach(item => On.unsub(item))
+        this.#componentInstance && this.#componentInstance.unmount()
     }
 }
