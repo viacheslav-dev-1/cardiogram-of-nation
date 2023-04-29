@@ -31,10 +31,10 @@ export default class ActionPanel extends Component {
                 el && el.classList.remove('opt-inactive')
                 el && el.classList.add('opt-active')
 
-                Store.instance.mut('onOptionClick', el.id)
+                Store.$.mut('onOptionClick', el.id)
             })
 
-            Store.instance.mut('onOptionClick', 'coption')
+            Store.$.mut('onOptionClick', 'coption')
         } else {
             this.find('#coption').style.cursor = 'default'
             this.find('#soption').style.cursor = 'default'

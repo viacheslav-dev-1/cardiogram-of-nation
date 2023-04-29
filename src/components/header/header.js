@@ -23,7 +23,7 @@ export default class HeaderComponent extends Component {
         On.few(daysInput, {
             input: () => {
                 daysInput.value < 1 || daysInput.value > warDay && (daysInput.value = warDay)
-                Store.instance.mut('daysInput', daysInput.value)
+                Store.$.mut('daysInput', daysInput.value)
             },
             keypress: e => e.key.length === 1 && /\D/.test(e.key) && e.preventDefault()
         })

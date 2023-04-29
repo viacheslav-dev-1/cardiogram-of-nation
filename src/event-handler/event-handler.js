@@ -11,6 +11,16 @@ export default class EventHandler {
         const eventObj = new Event(node, event, func)
         this.#events.push(eventObj)
         node.addEventListener(event, func)
+        return eventObj
+    }
+
+    static unsubscribe(event) {
+        if (event && event.node && event.event) {
+            event.node.removeEventListener(event.event, event.func)
+            this.#events.filter(e => this.#builtIn(e) ? !this.#builtIn(e.node) : e.node.id !== event.node.id) //CHECK
+        } else {
+            console.error('Event object, node or event name cannot be undefined')
+        }
     }
 
     static unsub(node) {

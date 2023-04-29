@@ -23,7 +23,7 @@ export default class DetailsContentPart extends Component {
         dialogRef.find('#dateTitle').innerText = `${dayV}.${monthV}.${yearV}`
 
 
-        const dayData = Store.instance.get('eventData').cur.filter(it => it.day === data.day)[0]
+        const dayData = Store.$.get('eventData').cur.filter(it => it.day === data.day)[0]
         this.find('#cFeel').innerText = dayData?.cFeel ? dayData.cFeel : "-"
         this.find('#sFeel').innerText = dayData?.sFeel ? dayData.sFeel : "-"
         this.find('#eFeel').innerText = dayData?.eFeel ? dayData.eFeel : "-"

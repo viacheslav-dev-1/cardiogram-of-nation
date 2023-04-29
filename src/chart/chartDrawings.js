@@ -67,7 +67,7 @@ export default class ChartDrawings {
         this.#legendSvg && (this.#legendSvg.style.height = legendSize[1] + 'px')
 
         const grid = this.#drawGrid(chartSize[1], theme, options)
-        const data = Store.instance.get('eventData').cur
+        const data = Store.$.get('eventData').cur
         this.#drawChart(data, grid, theme, options)
     }
 
@@ -127,7 +127,7 @@ export default class ChartDrawings {
             this.#canvasContainer.scrollLeft += e.deltaY;
         });
 
-        Store.instance.sub('daysInput', (prev, cur) => {
+        Store.$.sub('daysInput', (_, cur) => {
             cur != '' && points && (this.#canvasContainer.scrollLeft = points.get(this.#point(cur, 1))[0] - 10)
         })
 
@@ -195,7 +195,7 @@ export default class ChartDrawings {
         }
 
         if (!UtilsService.isMobile) {
-            Store.instance.sub('asTaras', (_, asTaras) => {
+            Store.$.sub('asTaras', (_, asTaras) => {
                 this.#legendSvg && this.#legendSvg.remove()
                 this.#drawLegendCanvas()
 
@@ -220,7 +220,7 @@ export default class ChartDrawings {
                 eoption: { fill: theme.red, key: 'eFeel' }
             }
 
-            this.#legendSvg && Store.instance.sub('onOptionClick', (_, current) => {
+            this.#legendSvg && Store.$.sub('onOptionClick', (_, current) => {
                 this.#legendSvg.remove()
                 this.#drawLegendCanvas()
 

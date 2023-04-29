@@ -29,7 +29,7 @@ export default class MenuContentPart extends Component {
             On.change(toggle, () => {
                 asTarasB = !asTarasB
                 Ls.set({ asTaras: asTarasB })
-                Wait.for(450).then(() => Store.instance.mut('asTaras', asTarasB))
+                Wait.for(450).then(() => Store.$.mut('asTaras', asTarasB))
             })
 
             this.#items.push(toggle)
