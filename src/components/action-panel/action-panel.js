@@ -1,6 +1,6 @@
 import Component from "../component"
 import template from './action-panel.html'
-import Store from 'a-simple-store/src/store'
+import { mut } from 'a-simple-store/src/index'
 import UtilsService from "../../services/utils-service"
 import On from "../../event-handler/on"
 
@@ -31,10 +31,10 @@ export default class ActionPanel extends Component {
                 el && el.classList.remove('opt-inactive')
                 el && el.classList.add('opt-active')
 
-                Store.$.mut('onOptionClick', el.id)
+                mut('onOptionClick', el.id)
             })
 
-            Store.$.mut('onOptionClick', 'coption')
+            mut('onOptionClick', 'coption')
         } else {
             this.find('#coption').style.cursor = 'default'
             this.find('#soption').style.cursor = 'default'

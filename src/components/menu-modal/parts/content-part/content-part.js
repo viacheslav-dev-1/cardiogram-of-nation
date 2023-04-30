@@ -1,5 +1,5 @@
 import Component from "../../../component";
-import Store from 'a-simple-store/src/store'
+import { mut } from 'a-simple-store/src/index'
 import template from "./content-part.html"
 import UtilsService from "../../../../services/utils-service";
 import On from "../../../../event-handler/on";
@@ -29,7 +29,7 @@ export default class MenuContentPart extends Component {
             On.change(toggle, () => {
                 asTarasB = !asTarasB
                 Ls.set({ asTaras: asTarasB })
-                Wait.for(450).then(() => Store.$.mut('asTaras', asTarasB))
+                Wait.for(450).then(() => mut('asTaras', asTarasB))
             })
 
             this.#items.push(toggle)
