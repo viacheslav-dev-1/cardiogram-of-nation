@@ -1,4 +1,4 @@
-import { mut, sub, subject } from 'a-simple-store/src/index'
+import { mut, subject } from 'a-simple-store'
 
 export default class UtilsService {
     static #clientWidth = undefined

@@ -1,7 +1,7 @@
 import DetailsContentPart from "../components/details-modal/content-part/content-part"
 import ModalComponent from "../components/modal/modal"
 import UtilsService from "../services/utils-service"
-import { subject, sub, mut } from 'a-simple-store/src/index'
+import { subject, sub } from 'a-simple-store'
 import { Arrow } from "./arrow"
 import { Figure } from "./figure"
 import { Label } from "./label"

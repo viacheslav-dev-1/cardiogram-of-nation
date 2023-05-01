@@ -1,4 +1,4 @@
-import { mut } from 'a-simple-store/src/index'
+import { mut } from 'a-simple-store'
 import Component from '../component'
 import ModalComponent from '../modal/modal'
 import MenuContentPart from '../menu-modal/parts/content-part/content-part'

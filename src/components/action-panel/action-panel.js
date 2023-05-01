@@ -1,6 +1,6 @@
 import Component from "../component"
 import template from './action-panel.html'
-import { mut } from 'a-simple-store/src/index'
+import { mut } from 'a-simple-store'
 import UtilsService from "../../services/utils-service"
 import On from "../../event-handler/on"
 

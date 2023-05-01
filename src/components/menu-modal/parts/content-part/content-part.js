@@ -1,5 +1,5 @@
 import Component from "../../../component";
-import { mut } from 'a-simple-store/src/index'
+import { mut } from 'a-simple-store'
 import template from "./content-part.html"
 import UtilsService from "../../../../services/utils-service";
 import On from "../../../../event-handler/on";
