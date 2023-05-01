@@ -25,7 +25,7 @@
     "wepback": "^1.0.0"
   },
   "dependencies": {
-    "a-simple-store": "^2.0.3",
+    "a-simple-store": "^2.0.9",
     "firebase": "^9.17.1",
     "html-webpack-plugin": "^5.5.0"
   }
