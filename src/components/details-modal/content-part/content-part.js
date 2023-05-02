@@ -1,5 +1,5 @@
 import UtilsService from '../../../services/utils-service'
-import { subject } from 'a-simple-store'
+import { subject } from 'tieder'
 import Component from '../../component'
 import template from './content-part.html'
 

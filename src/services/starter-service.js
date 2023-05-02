@@ -5,7 +5,7 @@ import FirebaseService from '../services/firebase-service';
 import Factory from '../components/component-factory';
 import Wait from '../routine/wait';
 import Ls from './local-storage-service';
-import { mut } from 'a-simple-store'
+import { mut } from 'tieder'
 
 export default class StarterService {
     static async start() {

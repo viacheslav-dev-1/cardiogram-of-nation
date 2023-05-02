@@ -1,4 +1,4 @@
-import { mut } from 'a-simple-store'
+import { mut } from 'tieder'
 import Component from '../component'
 import ModalComponent from '../modal/modal'
 import MenuContentPart from '../menu-modal/parts/content-part/content-part'

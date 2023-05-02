@@ -1,7 +1,7 @@
 import DetailsContentPart from "../components/details-modal/content-part/content-part"
 import ModalComponent from "../components/modal/modal"
 import UtilsService from "../services/utils-service"
-import { subject, sub } from 'a-simple-store'
+import { subject, sub } from 'tieder'
 import { Arrow } from "./arrow"
 import { Figure } from "./figure"
 import { Label } from "./label"
@@ -220,7 +220,7 @@ export default class ChartDrawings {
                 eoption: { fill: theme.red, key: 'eFeel' }
             }
 
-            this.#legendSvg && sub('onOptionClick', (_, current) => {
+            const optionClickCbk = (_, current) => {
                 this.#legendSvg.remove()
                 this.#drawLegendCanvas()
 
@@ -239,7 +239,10 @@ export default class ChartDrawings {
                         stroke: zero && item[zero] ? theme.zeroStroke : null
                     }, i, item[key], this.#legendSvg)
                 }
-            })
+            }
+
+            optionClickCbk(undefined, 'coption')
+            this.#legendSvg && sub('onOptionClick', optionClickCbk)
         }
         UtilsService.isHorizontal && (this.#chartContainer.style.height = 'auto')
     }

@@ -1,4 +1,4 @@
-import { mut, subject } from 'a-simple-store'
+import { mut, subject } from 'tieder'
 
 export default class UtilsService {
     static #clientWidth = undefined
