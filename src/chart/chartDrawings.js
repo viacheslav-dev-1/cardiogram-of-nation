@@ -10,6 +10,7 @@ import titleTemplate from '../components/details-modal/title-part/title-part.htm
 import Factory from "../components/component-factory"
 import On from "../event-handler/on"
 import Ls from "../services/local-storage-service"
+import { storeConfig } from "../config/store-config"
 
 export default class ChartDrawings {
     #columns
@@ -67,7 +68,7 @@ export default class ChartDrawings {
         this.#legendSvg && (this.#legendSvg.style.height = legendSize[1] + 'px')
 
         const grid = this.#drawGrid(chartSize[1], theme, options)
-        const data = subject('eventData').cur
+        const data = subject(storeConfig.eventData).cur
         this.#drawChart(data, grid, theme, options)
     }
 
@@ -127,7 +128,7 @@ export default class ChartDrawings {
             this.#canvasContainer.scrollLeft += e.deltaY;
         });
 
-        sub('daysInput', (_, cur) => {
+        sub(storeConfig.days, (_, cur) => {
             cur != '' && points && (this.#canvasContainer.scrollLeft = points.get(this.#point(cur, 1))[0] - 10)
         })
 
@@ -195,7 +196,7 @@ export default class ChartDrawings {
         }
 
         if (!UtilsService.isMobile) {
-            sub('asTaras', (_, asTaras) => {
+            sub(storeConfig.asTaras, (_, asTaras) => {
                 this.#legendSvg && this.#legendSvg.remove()
                 this.#drawLegendCanvas()
 
@@ -241,8 +242,8 @@ export default class ChartDrawings {
                 }
             }
 
-            optionClickCbk(undefined, 'coption')
-            this.#legendSvg && sub('onOptionClick', optionClickCbk)
+            UtilsService.isHorizontal || optionClickCbk(undefined, 'coption')
+            this.#legendSvg && sub(storeConfig.option, optionClickCbk)
         }
         UtilsService.isHorizontal && (this.#chartContainer.style.height = 'auto')
     }

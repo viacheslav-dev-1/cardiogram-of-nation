@@ -7,6 +7,7 @@ import Wait from "../../../../routine/wait";
 import MenuService from "../../../../services/menu-service";
 import { menuConfig } from "../../menu-config";
 import Ls from "../../../../services/local-storage-service";
+import { storeConfig } from "../../../../config/store-config";
 
 export default class MenuContentPart extends Component {
     #items = []
@@ -29,7 +30,7 @@ export default class MenuContentPart extends Component {
             On.change(toggle, () => {
                 asTarasB = !asTarasB
                 Ls.set({ asTaras: asTarasB })
-                Wait.for(450).then(() => mut('asTaras', asTarasB))
+                Wait.for(450).then(() => mut(storeConfig.asTaras, asTarasB))
             })
 
             this.#items.push(toggle)

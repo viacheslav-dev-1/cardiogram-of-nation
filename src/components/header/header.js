@@ -7,6 +7,7 @@ import template from './header.html'
 import titleTemplate from '../menu-modal/parts/title-part/title-part.html'
 import Factory from '../component-factory'
 import On from '../../event-handler/on'
+import { storeConfig } from '../../config/store-config'
 
 export default class HeaderComponent extends Component {
     mount({ anchor }) {
@@ -23,7 +24,7 @@ export default class HeaderComponent extends Component {
         On.few(daysInput, {
             input: () => {
                 daysInput.value < 1 || daysInput.value > warDay && (daysInput.value = warDay)
-                mut('daysInput', daysInput.value)
+                mut(storeConfig.days, daysInput.value)
             },
             keypress: e => e.key.length === 1 && /\D/.test(e.key) && e.preventDefault()
         })

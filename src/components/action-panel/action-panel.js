@@ -3,6 +3,7 @@ import template from './action-panel.html'
 import { mut } from 'tieder'
 import UtilsService from "../../services/utils-service"
 import On from "../../event-handler/on"
+import { storeConfig } from "../../config/store-config"
 
 export default class ActionPanel extends Component {
     mount({ anchor }) {
@@ -31,10 +32,10 @@ export default class ActionPanel extends Component {
                 el && el.classList.remove('opt-inactive')
                 el && el.classList.add('opt-active')
 
-                mut('onOptionClick', el.id)
+                mut(storeConfig.option, el.id)
             })
 
-            mut('onOptionClick', 'coption')
+            mut(storeConfig.option, 'coption')
         } else {
             this.find('#coption').style.cursor = 'default'
             this.find('#soption').style.cursor = 'default'

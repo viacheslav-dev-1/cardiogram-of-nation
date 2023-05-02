@@ -2,6 +2,7 @@ import UtilsService from '../../../services/utils-service'
 import { subject } from 'tieder'
 import Component from '../../component'
 import template from './content-part.html'
+import { storeConfig } from '../../../config/store-config'
 
 export default class DetailsContentPart extends Component {
     mount(modalData) {
@@ -23,7 +24,7 @@ export default class DetailsContentPart extends Component {
         dialogRef.find('#dateTitle').innerText = `${dayV}.${monthV}.${yearV}`
 
 
-        const dayData = subject('eventData').cur.filter(it => it.day === data.day)[0]
+        const dayData = subject(storeConfig.eventData).cur.filter(it => it.day === data.day)[0]
         this.find('#cFeel').innerText = dayData?.cFeel ? dayData.cFeel : "-"
         this.find('#sFeel').innerText = dayData?.sFeel ? dayData.sFeel : "-"
         this.find('#eFeel').innerText = dayData?.eFeel ? dayData.eFeel : "-"

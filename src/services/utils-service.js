@@ -1,4 +1,5 @@
 import { mut, subject } from 'tieder'
+import { storeConfig } from '../config/store-config';
 
 export default class UtilsService {
     static #clientWidth = undefined
@@ -34,19 +35,20 @@ export default class UtilsService {
     }
 
     static resize() {
-        const prevMob = subject('prevMob')?.cur
-        const prevHor = subject('prevHor')?.cur
+        const { mob, hor } = subject(storeConfig.prevClientSize)?.cur
         const { innerWidth, innerHeight } = window
 
-        if ((prevMob === 'm' && !(innerWidth < 800 && innerHeight < 800)) ||
-            (prevMob === 'd' && innerWidth < 800 && innerHeight < 800) ||
-            (prevHor === 'v' && innerHeight < 600 || (prevHor === 'h' && !(innerHeight < 600)))) {
+        if ((mob === 'm' && !(innerWidth < 800 && innerHeight < 800)) ||
+            (mob === 'd' && innerWidth < 800 && innerHeight < 800) ||
+            (hor === 'v' && innerHeight < 600 || (hor === 'h' && !(innerHeight < 600)))) {
             location.reload()
         }
     }
 
     static setPrevSize() {
-        mut('prevMob', window.innerWidth < 800 && window.innerHeight < 800 ? 'm' : 'd')
-        mut('prevHor', window.innerHeight < 600 ? 'h' : 'v')
+        mut(storeConfig.prevClientSize, {
+            mob: window.innerWidth < 800 && window.innerHeight < 800 ? 'm' : 'd',
+            hor: window.innerHeight < 600 ? 'h' : 'v'
+        })
     }
 }
