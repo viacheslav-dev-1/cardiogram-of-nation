@@ -10,7 +10,7 @@
         display: flex;
         justify-content: center;
         border-radius: 100px;
-        border: 2px white solid;
+        border: 2px var(--main-text-color) solid;
     }
 
     div.menu:hover {
@@ -32,8 +32,8 @@
             .war-day-input {
                 background: transparent;
                 font-family: 'e-Ukraine Head';
-                color: #c9c9c9;
-                border: #c9c9c9 2px solid;
+                color: var(--main-text-color);
+                border: var(--main-text-color) 2px solid;
                 border-radius: 5px;
                 outline: none;
                 font-weight: bold;
@@ -41,7 +41,7 @@
                 padding: 3px;
                 text-align: center;
                 font-size: 12px;
-                background: black;
+                background: var(--main-background);
             }
             
             .war-day-input:focus {

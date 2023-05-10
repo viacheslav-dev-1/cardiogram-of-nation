@@ -4,80 +4,22 @@
 }
 
 body {
-    background: black;
+    background: var(--main-background);
     font-family: 'e-Ukraine Head';
-    color: rgb(201, 201, 201);
+    color: var(--main-text-color);
     overflow: hidden;
     height: 100%;
 }
 
 a[href] {
     text-decoration: none;
-    color: rgb(83, 177, 249);
+    color: var(--main-link-color);
 }
 
 h4 {
     margin: 0;
 }
 
-
-/* Toggle styles */
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgb(175, 175, 175);
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 3px;
-    bottom: 2px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-input:checked+.slider {
-    background-color: #53b1f9;
-}
-
-input:checked+.slider:before {
-    -webkit-transform: translateX(18px);
-    -ms-transform: translateX(18px);
-    transform: translateX(18px);
-}
-
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
 
 /* Chart styles */
 
@@ -103,27 +45,14 @@ input:checked+.slider:before {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-    transition: 0.1s;
     text-decoration: underline;
 }
 
 .svg-circle-text:hover {
-    font-size: 24px;
-    transition: 0.1s;
+    fill: var(--yellow-color);
 }
-
 
 /* Animations */
-
-@keyframes grow {
-    0% {
-        transform: scaley(0)
-    }
-
-    100% {
-        transform: scaley(1)
-    }
-}
 
 @keyframes scale {
     0% {
@@ -135,31 +64,11 @@ input:checked+.slider:before {
     }
 }
 
-@keyframes appear {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
 .scale-animation {
     animation: scale 0.3s forwards;
 }
 
-.grow-animation {
-    animation: grow 0.5s forwards;
-}
-
-.appear-animation {
-    animation: appear 1s forwards;
-}
-
-.svg-polygon {
-    animation: grow 0.5s forwards;
-}
+/* Scroll Bar styles */
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -170,9 +79,9 @@ input:checked+.slider:before {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: var(--slider-second);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--modal-menu-border);
 }

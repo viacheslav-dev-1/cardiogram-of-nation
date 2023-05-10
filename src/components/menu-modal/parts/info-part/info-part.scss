@@ -1,7 +1,7 @@
 .info-item {
     padding: 15px;
     font-size: 14px;
-    border-top: #545454 1px solid;
+    border-top: var(--modal-menu-border) 1px solid;
     display: flex;
     gap: 10px;
 }
@@ -9,11 +9,11 @@
 .info-item.v {
     padding: 5px 15px 5px 10px;
     border-top: 0;
-    border-bottom: #545454 1px solid;
+    border-bottom: var(--modal-menu-border) 1px solid;
 }
 
 .last {
-    border-bottom: #545454 1px solid;
+    border-bottom: var(--modal-menu-border) 1px solid;
 }
 
 .content {

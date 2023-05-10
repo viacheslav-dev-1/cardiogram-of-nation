@@ -3,14 +3,17 @@ import { mut } from 'tieder'
 import template from "./content-part.html"
 import UtilsService from "../../../../services/utils-service";
 import On from "../../../../event-handler/on";
-import Wait from "../../../../routine/wait";
 import MenuService from "../../../../services/menu-service";
 import { menuConfig } from "../../menu-config";
 import Ls from "../../../../services/local-storage-service";
 import { storeConfig } from "../../../../config/store-config";
+import Factory from "../../../component-factory";
+import { ToggleComponent } from "../../../toggle/toggle";
+import ThemeService from "../../../../services/theme-service";
 
 export default class MenuContentPart extends Component {
     #items = []
+    #refs = []
     
     mount(modalData) {
         const { anchor, dialogRef } = modalData
@@ -22,19 +25,27 @@ export default class MenuContentPart extends Component {
         if (UtilsService.isMobile) {
             this.find('#asTaras').remove()
         } else {
-            let asTarasB = Ls.get('asTaras')
-            const toggle = this.find('#asTarasToggle')
-            asTarasB && toggle.setAttribute('checked', 'true')
-            asTarasB || toggle.removeAttribute('checked')
+            const asTarasB = Ls.get('asTaras')
+            const onChange = checked => {
+                Ls.set({ asTaras: checked })
+                mut(storeConfig.asTaras, checked)
+            }
 
-            On.change(toggle, () => {
-                asTarasB = !asTarasB
-                Ls.set({ asTaras: asTarasB })
-                Wait.for(450).then(() => mut(storeConfig.asTaras, asTarasB))
-            })
-
-            this.#items.push(toggle)
+            const tarasToggle = Factory.mount(ToggleComponent, { anchor: 'asTarasToggle', data: { checked: asTarasB, onChange } })
+            this.#refs.push(tarasToggle)
         }
+
+
+        const themeLs = Ls.get('theme')
+        const light = themeLs === 'light'
+        const themeChange = checked => {
+            const theme = checked ? 'light' : 'dark'
+            Ls.set({ theme })
+            ThemeService.apply(theme)
+        }
+
+        const themeToggle = Factory.mount(ToggleComponent, { anchor: 'themeToggle', data: { checked: light, onChange: themeChange } })
+        this.#refs.push(themeToggle)
 
         MenuService.instance.build(dialogRef, menuConfig)
     }
@@ -42,5 +53,6 @@ export default class MenuContentPart extends Component {
     unmount() {
         this.#items.forEach(item => On.unsub(item))
         MenuService.instance.destroy()
+        this.#refs.forEach(ref => ref.unmount())
     }
 }

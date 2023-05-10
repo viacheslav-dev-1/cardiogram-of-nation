@@ -7,9 +7,12 @@ import Wait from '../routine/wait';
 import Ls from './local-storage-service';
 import { mut } from 'tieder'
 import { storeConfig } from '../config/store-config';
+import ThemeService from './theme-service';
 
 export default class StarterService {
     static async start() {
+
+        ThemeService.init()
 
         const warDay = UtilsService.warDay
         const container = Factory.mount(Container)
@@ -25,7 +28,7 @@ export default class StarterService {
             const sorted = data.sort((prev, next) => parseInt(prev.day) > parseInt(next.day) ? 1 : -1)
             mut(storeConfig.eventData, sorted)
             container.loader.unmount()
-            drawings.draw({ darker: 'black', dark: '#3e3e3e', bright: '#c9c9c9', blue: '#53b1f9', yellow: '#fffb00', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
+            drawings.draw({ darker: 'var(--chart-darker)', dark: 'var(--chart-spots-color)', bright: 'var(--main-text-color)', blue: '#53b1f9', yellow: 'var(--yellow-color)', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
             Ls.set({
                 lastUpdate: UtilsService.date(Date.now()),
                 emotionsData: JSON.stringify(sorted)
@@ -36,7 +39,7 @@ export default class StarterService {
             const dataLs = Ls.get('emotionsData')
             const sorted = JSON.parse(dataLs).sort((prev, next) => parseInt(prev.day) > parseInt(next.day) ? 1 : -1)
             mut(storeConfig.eventData, sorted)
-            drawings.draw({ darker: 'black', dark: '#3e3e3e', bright: '#c9c9c9', blue: '#53b1f9', yellow: '#fffb00', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
+            drawings.draw({ darker: 'var(--chart-darker)', dark: 'var(--chart-spots-color)', bright: 'var(--main-text-color)', blue: '#53b1f9', yellow: 'var(--yellow-color)', red: '#ff5f5f', zero: 'white', zeroStroke: '#ff5f5f' })
         }
     }
 }

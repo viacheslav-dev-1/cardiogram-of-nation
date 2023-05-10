@@ -7,7 +7,7 @@
 
         &.yellow-label {
             .sq {
-                background-color: #fffb00;
+                background-color: var(--yellow-color);
             }
         }
 
@@ -35,7 +35,7 @@
             }
         }
         &.opt-active {
-            background: #4e4e4e;
+            background: var(--opt-active);
         }
     }
 }

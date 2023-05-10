@@ -18,7 +18,7 @@ export default class Container extends Component {
         const isMobile = UtilsService.isMobile
         const isHorizontal = UtilsService.isHorizontal
 
-        if ( isMobile) {
+        if (isMobile) {
             this.find('.bottom-action-panel').style.display = 'none'
         }
 
