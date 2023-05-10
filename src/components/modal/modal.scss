@@ -14,6 +14,10 @@
         background: var(--modal-header-background-color);
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
+        
+        #modalTitle {
+            text-align: center;
+        }
 
         .back-btn {
             margin-right: auto;
