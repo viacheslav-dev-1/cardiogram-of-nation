@@ -1,11 +1,14 @@
-import { applyTheme, initThemes } from "../components/theme/theme-manager"
-import Ls from "./local-storage-service"
+import { applyTheme, initThemes } from "themespick"
 
 export default class ThemeService {
     static init() {
         initThemes({
-            default: Ls.get('theme') ?? 'dark',
+            common: {
+                '--slider-main': 'white',
+                '--slider-second': 'rgb(175, 175, 175)',
+            },
             dark: {
+                ref: 'common',
                 '--main-background': 'black',
                 '--main-text-color': 'rgb(201, 201, 201)',
                 '--main-link-color': 'rgb(83, 177, 249)',
@@ -13,8 +16,6 @@ export default class ThemeService {
                 '--modal-box-shadow': '#252525',
                 '--modal-header-background-color': '#383838',
                 '--modal-menu-item-hover': '#343434',
-                '--slider-main': 'white',
-                '--slider-second': 'rgb(175, 175, 175)',
                 '--modal-mask': 'rgba(255, 255, 255, 0.831)',
                 '--opt-active': '#4e4e4e',
                 '--modal-menu-border': '#545454',
@@ -23,6 +24,7 @@ export default class ThemeService {
                 '--chart-darker': 'black'
             },
             light: {
+                ref: 'common',
                 '--main-background': 'rgb(247 247 247)',
                 '--main-text-color': '#535353',
                 '--main-link-color': 'rgb(43 106 154)',
@@ -30,8 +32,6 @@ export default class ThemeService {
                 '--modal-box-shadow': '#646464',
                 '--modal-header-background-color':' #c6c6c6',
                 '--modal-menu-item-hover': '#b9b9b9',
-                '--slider-main': 'white',
-                '--slider-second': 'rgb(175, 175, 175)',
                 '--modal-mask': 'rgb(30 30 30 / 83%)',
                 '--opt-active': '#c3c3c3',
                 '--modal-menu-border': '#a9a9a9',
@@ -39,7 +39,7 @@ export default class ThemeService {
                 '--chart-spots-color': '#c5c5c5',
                 '--chart-darker': '#fff'
             }
-        })
+        }, 'dark', { key: 'cardiogramOfNationTheme', storage: 'localStorage' })
     }
 
     static apply(name) {
