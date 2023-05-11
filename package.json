@@ -27,7 +27,7 @@
   "dependencies": {
     "firebase": "^9.17.1",
     "html-webpack-plugin": "^5.5.0",
-    "themespick": "^1.0.0",
+    "themespick": "^1.0.1",
     "tieder": "^1.0.4"
   }
 }
