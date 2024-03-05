@@ -6,10 +6,11 @@ export default class UtilsService {
     static #clientHeight = undefined
 
     static get warDay() {
-        const start = new Date("02/24/2022");
-        const now = new Date();
-        const timeDiff = now.getTime() - start.getTime()
-        return Math.floor(timeDiff / (1000 * 3600 * 24)) + 1
+        // const start = new Date("02/24/2022");
+        // const now = new Date();
+        // const timeDiff = now.getTime() - start.getTime()
+        // return Math.floor(timeDiff / (1000 * 3600 * 24)) + 1
+        return 731
     }
 
     static get isMobile() {
